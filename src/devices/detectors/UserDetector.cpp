@@ -1,5 +1,5 @@
 #include "UserDetector.h"
-#include "Arduino.h"
+#include <Arduino.h>
 
 UserDetector::UserDetector(int pin) {
     this->pin = pin;
