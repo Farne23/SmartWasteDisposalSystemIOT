@@ -1,8 +1,9 @@
 #include "LightSignals.h"
+#include "Led.h"
 
 /*Implementation of LigthSignal interface */
 
-LightSignals::LightSignals(Led greenLed, Led redLed ){
+LightSignals::LightSignals(Led greenLed, Led redLed){
     this->greenLed = greenLed;
     this->redLed = redLed;
 }   
