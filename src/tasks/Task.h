@@ -9,17 +9,20 @@
 class Task {
     int myPeriod;
     int timeElapsed;
-    GlobalEnviroment* enviromentStatus;
+    GlobalEnviroment* globalEnviroment;
 
     public:
-    virtual void init(int period, GlobalEnviroment* enviromentStatus){
+    virtual void init(int period, GlobalEnviroment* globalEnviroment){
         myPeriod = period;  
         timeElapsed = 0;
-        this->enviromentStatus = enviromentStatus;
+        this->globalEnviroment = globalEnviroment;
+        this->initComponents();
     }
 
     /* Handler for the tick of the FSM*/
     virtual void tick() = 0;
+    /* Function used to set up the Task to the wantend initali conditions*/
+    virtual void initComponents();
 
     bool updateAndCheckTime(int basePeriod){
         timeElapsed += basePeriod;

@@ -13,11 +13,12 @@ enum System_Status {
     NORMAL,
     PROBLEM_DETECTED,
     };
-    
+
 class GlobalEnviroment{
     private:
     System_Status status;
     LightSignals* lightSignals;
+    void init();
     public:
     GlobalEnviroment();
     bool problemDetected();

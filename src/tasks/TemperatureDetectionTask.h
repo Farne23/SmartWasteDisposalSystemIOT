@@ -12,7 +12,9 @@ enum TemperatureDetectionTaskStatus{
 class TemperatureDetectionTask : public Task {
     private:
         TemperatureDetectionTaskStatus status;
+        void initComponents();
     public:
+        void init();
         void tick();
 };
 

@@ -1,5 +1,13 @@
 #include "TemperatureDetectionTask.h"
 
+
+void TemperatureDetectionTask :: initComponents(){
+    /**
+     * Not shared components initliazation here
+     */
+}
+
+
 void TemperatureDetectionTask :: tick(){
     switch (this->status)
     {

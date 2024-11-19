@@ -1,5 +1,11 @@
 #include "WasteDisposalTask.h"
 
+void WasteDisposalTask:: initComponents(){
+    /**
+     * Not shared components initliazation here
+     */
+}
+
 void WasteDisposalTask:: tick(){
     switch (this->status)
     {

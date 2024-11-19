@@ -14,6 +14,7 @@ enum WasteDisposalTaskStatus{
 class WasteDisposalTask : public Task {
     private:
         WasteDisposalTaskStatus status;
+        void initComponents();
     public:
         void tick();
 };
