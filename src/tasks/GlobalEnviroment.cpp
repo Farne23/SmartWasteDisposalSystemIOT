@@ -13,8 +13,20 @@ bool GlobalEnviroment::problemDetected(){
 
 void GlobalEnviroment::signalProblem(){
     this->status = PROBLEM_DETECTED;
+    this->lightSignals->signalProblem();
 }
 
 void GlobalEnviroment::signalNormal(){
   this->status = NORMAL;
 }
+
+void GlobalEnviroment::signalAvailability_lights(){
+  this->lightSignals->signalAvailability();
+};
+void GlobalEnviroment::signalSleep_lights(){
+  this->lightSignals->signalSleep();
+};   
+
+void GlobalEnviroment::signalProblem_lights(){
+  this->lightSignals->signalProblem();
+}; 

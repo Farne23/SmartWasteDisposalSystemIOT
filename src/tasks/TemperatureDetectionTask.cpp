@@ -7,7 +7,7 @@ void TemperatureDetectionTask :: tick(){
         break;
     case TEMPERATURE_EXCEEDING:
         break;
-    case PROBLEM_DETECTED:
+    case SYSTEM_FAILURE:
         break;
     default:
         break;
