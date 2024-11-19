@@ -1,17 +1,21 @@
 #ifndef __TASK__
 #define __TASK__
 
+#include "GlobalEnviroment.h"
+
 /**
  * Abastract class rappresenting an interface for a generic task of FSM.
  */
 class Task {
     int myPeriod;
     int timeElapsed;
+    GlobalEnviroment* enviromentStatus;
 
     public:
-    virtual void init(int period){
+    virtual void init(int period, GlobalEnviroment* enviromentStatus){
         myPeriod = period;  
         timeElapsed = 0;
+        this->enviromentStatus = enviromentStatus;
     }
 
     /* Handler for the tick of the FSM*/

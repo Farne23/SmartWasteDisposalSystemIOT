@@ -10,9 +10,9 @@ converted as switch hon or switch off signals for the leds */
 class LightSignals {
 public:
     LightSignals(Led greenLed, Led redLed);
-    virtual void signalAvailability() = 0;
-    virtual void signalSleep() = 0;   
-    virtual void signalProblem() = 0;   
+    void signalAvailability();
+    void signalSleep();   
+    void signalProblem(); 
 private:
     Led greenLed;
     Led redLed;
