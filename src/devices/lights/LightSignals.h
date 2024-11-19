@@ -9,13 +9,13 @@ converted as switch hon or switch off signals for the leds */
 
 class LightSignals {
 public:
-    LightSignals(Led greenLed, Led redLed);
+    LightSignals(Led* greenLed, Led* redLed);
     void signalAvailability();
     void signalSleep();   
     void signalProblem(); 
 private:
-    Led greenLed;
-    Led redLed;
+    Led* greenLed;
+    Led* redLed;
 };
 
 #endif

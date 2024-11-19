@@ -4,6 +4,7 @@
 
 GlobalEnviroment::GlobalEnviroment(){
   this->status = NORMAL;
+  this->lightSignals = new LightSignals(new Led(GREEN_LED_PIN), new Led(RED_LED_PIN));
 }
 
 bool GlobalEnviroment::problemDetected(){

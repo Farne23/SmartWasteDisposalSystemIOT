@@ -2,6 +2,7 @@
 #define __GLOBALENVIROMENT__
 
 #include "devices/lights/LightSignals.h"
+#include "pins/HwInterfaces.h"
 /* 
 A class realized to manage access to the variable, 
 shared between the two tasks, wich keeps track of the global status of the system.
@@ -12,11 +13,12 @@ disposal system flow, and the normal phase, where the system works regurlary.
 class GlobalEnviroment{
     private:
     System_Status status;
-    LightSignals lightSignals;
+    LightSignals* lightSignals;
     public:
-    virtual bool problemDetected();
-    virtual void signalProblem();
-    virtual void signalNormal();
+    GlobalEnviroment();
+    bool problemDetected();
+    void signalProblem();
+    void signalNormal();
 };
 
 enum System_Status {
