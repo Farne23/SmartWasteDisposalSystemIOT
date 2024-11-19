@@ -1,5 +1,12 @@
 {
-    "files.associations": {
-        "new": "cpp"
-    }
+  "files.associations": {
+    "*.cpp": "cpp",
+    "*.h": "cpp"
+  },
+  "C_Cpp.default.compilerPath": "C:\\msys64\\ucrt64\\bin\\gcc.exe",
+  "C_Cpp.default.includePath": [
+    "C:/msys64/ucrt64/include/c++/13.2.0/",
+    "C:/msys64/ucrt64/include"
+  ],
+  "C_Cpp.default.intelliSenseMode": "gcc-x64"  // Imposta il modo di IntelliSense per gcc
 }
