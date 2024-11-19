@@ -2,7 +2,7 @@
 #define __TASK__
 
 /**
- * Abastract class rappresenting an interface for a generica task of FSM.
+ * Abastract class rappresenting an interface for a generic task of FSM.
  */
 class Task {
     int myPeriod;
