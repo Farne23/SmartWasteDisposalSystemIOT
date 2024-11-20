@@ -1,17 +1,20 @@
 #ifndef __LCDISPLAY__
 #define __LCDISPLAY__
 
-#include "TextDisplay2Lines.h"
+#include <map>
+#include "utility.h"
+#include <string>
+#include "LiquidCrystal_I2C.h"
+using namespace std;
 
-class LCDisplay: public TextDisplay2Lines {
+class LCDisplay {
     public:
         LCDisplay();
-        void writeLine(char msg[]);
-        void write2Lines(char msg1[], char msg2[]);
+        void printMsg(string msgName);
+        bool addMsg(string name, string line1, string line2);
     private:
-        /*
-         * map<string, string> msgs;
-         */
+        map<string, pair<string, string>> msgs; // should be initialized empty alrerady
+        LiquidCrystal_I2C lcd;
 };
 
 #endif
