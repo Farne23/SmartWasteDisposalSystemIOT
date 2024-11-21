@@ -15,3 +15,7 @@ void Container::signalProblem(){
     this->status=PROBLEM_DETECTED;
     this->lightSignals->signalProblem();
 }
+
+bool Container::isFixed(){
+    return this->status==NORMAL;
+}
