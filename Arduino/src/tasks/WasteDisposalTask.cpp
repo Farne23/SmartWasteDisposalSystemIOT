@@ -1,6 +1,11 @@
 #include "WasteDisposalTask.h"
 
-void WasteDisposalTask:: initComponents(){
+
+WasteDisposalTask :: WasteDisposalTask(ContainerWasteDisposal* container){
+    this->container = container;
+}
+
+void WasteDisposalTask:: initBehaviour(){
     /**
      * Not shared components initliazation here
      */

@@ -2,6 +2,7 @@
 #define __WASTEDISPOSALTASK__
 
 #include "Task.h"
+#include "container/ContainerWasteDisposal.h"
 
 enum WasteDisposalTaskStatus{
     READY_TO_ACCEPT,
@@ -14,8 +15,11 @@ enum WasteDisposalTaskStatus{
 class WasteDisposalTask : public Task {
     private:
         WasteDisposalTaskStatus status;
-        void initComponents();
+        ContainerWasteDisposal* container;
+        void initBehaviour();
     public:
+        WasteDisposalTask(ContainerWasteDisposal* container);
+        void init();
         void tick();
 };
 

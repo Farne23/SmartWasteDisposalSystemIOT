@@ -1,7 +1,10 @@
 #include "TemperatureDetectionTask.h"
 
+TemperatureDetectionTask :: TemperatureDetectionTask(ContainerTempDetection* container){
+    this->container = container;
+}
 
-void TemperatureDetectionTask :: initComponents(){
+void TemperatureDetectionTask :: initBehaviour(){
     /**
      * Not shared components initliazation here
      */
