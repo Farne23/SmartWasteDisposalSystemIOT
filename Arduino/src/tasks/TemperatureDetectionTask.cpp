@@ -1,6 +1,9 @@
 #include "TemperatureDetectionTask.h"
 #include <Arduino.h>
 
+#define MAX_TEMP 20
+#define MAX_TEMP_EXCEEDING_TIME 3000
+
 TemperatureDetectionTask :: TemperatureDetectionTask(ContainerTempDetection* container){
     this->container = container;
 }
@@ -21,7 +24,7 @@ void TemperatureDetectionTask :: tick(){
         break;
     case TEMPERATURE_EXCEEDING:
         if(this->container->getTemperature() > MAX_TEMP){
-            if(this>alertStartTime + MAX_TEMP_EXCEEDING_TIME < millis()){
+            if(this->alertStartTime + MAX_TEMP_EXCEEDING_TIME < millis()){
                 this->status = SYSTEM_FAILURE;
                 this->container->signalProblem();
             }
