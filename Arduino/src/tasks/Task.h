@@ -11,15 +11,18 @@ class Task {
     int timeElapsed;
 
     public:
+
+    /* Function used to set up the Task to the wantend inital conditions*/
+    virtual void initBehaviour();
+
     virtual void init(int period){
+        initBehaviour();
         myPeriod = period;  
         timeElapsed = 0;
     }
 
     /* Handler for the tick of the FSM*/
     virtual void tick() = 0;
-    /* Function used to set up the Task to the wantend inital conditions*/
-    virtual void initBehaviour();
 
     bool updateAndCheckTime(int basePeriod){
         timeElapsed += basePeriod;

@@ -3,9 +3,9 @@
 
 class ContainerTempDetection{
     public:
-        virtual bool problemDetected() = 0;
         virtual void signalProblem() = 0;
-        virtual void signalNormal() = 0;
+        virtual bool isFixed() = 0;
+        virtual long getTemperature() = 0;
 };
 
 #endif

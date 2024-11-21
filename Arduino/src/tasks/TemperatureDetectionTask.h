@@ -1,6 +1,9 @@
 #ifndef __TEMPERATUREDETECTIONTASK__
 #define __TEMPERATUREDETECTIONTASK__
 
+#define MAX_TEMP 20
+#define MAX_TEMP_EXCEEDING_TIME 3000
+
 #include "Task.h"
 #include "container/ContainerTempDetection.h"
 
@@ -14,6 +17,7 @@ class TemperatureDetectionTask : public Task {
     private:
         TemperatureDetectionTaskStatus status;
         ContainerTempDetection* container;
+        long alertStartTime;
         void initBehaviour();
     public:
         TemperatureDetectionTask(ContainerTempDetection* container);
