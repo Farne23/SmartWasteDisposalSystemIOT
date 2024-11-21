@@ -8,5 +8,6 @@ const int OPEN_BUTTON_PIN = 4;
 const int CLOSE_BUTTON_PIN = 5;
 
 const int TEMP_SENSOR_PIN = 6;
+const int USER_DETECTOR_PIN = 8;
 
 #endif

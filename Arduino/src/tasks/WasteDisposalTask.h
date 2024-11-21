@@ -6,6 +6,7 @@
 
 enum WasteDisposalTaskStatus{
     READY_TO_ACCEPT,
+    WAITING_FOR_USER,
     SLEEPING,
     SPILLING,
     CONTAINER_FULL,
@@ -16,6 +17,7 @@ class WasteDisposalTask : public Task {
     private:
         WasteDisposalTaskStatus status;
         ContainerWasteDisposal* container;
+        long noUserStartTime;
         void initBehaviour();
     public:
         WasteDisposalTask(ContainerWasteDisposal* container);

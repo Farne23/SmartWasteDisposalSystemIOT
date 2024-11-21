@@ -3,9 +3,10 @@
 
 class ContainerWasteDisposal{
     public:
-        virtual void setReady() = 0;
+        virtual bool userDetected() = 0;
         virtual void activateSleepMode() = 0;
-        virtual void activateSpillMode() = 0;
+        virtual void signalAvailability() = 0;
+        virtual void goToSleep() = 0;
 };
 
 #endif
