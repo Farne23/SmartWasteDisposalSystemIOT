@@ -3,6 +3,7 @@ package controller;
 import controller.api.ControlPanelController;
 import model.WasteDisposalImpl;
 import model.api.WasteDisposalModel;
+import view.Dashboard;
 import view.api.ControlPanelView;
 
 public class DashboardController implements ControlPanelController {
@@ -14,25 +15,27 @@ public class DashboardController implements ControlPanelController {
         super();
         this.model = new WasteDisposalImpl(port);
         // initialize view
-        this.view = null;
+        this.view = new Dashboard(() -> empty(), () -> repair());
     }
 
     @Override
     public void refresh() {
-        // TODO Auto-generated method stub
-        
+        var data = this.model.getStatus();
+        if (data.isPresent()) {
+            this.view.update(data.get().getX(),
+                    data.get().getY().getX(),
+                    data.get().getY().getY());
+        }
     }
 
     @Override
     public void empty() {
-        // TODO Auto-generated method stub
-        
+        this.model.empty();
     }
 
     @Override
     public void repair() {
-        // TODO Auto-generated method stub
-        
+        this.model.coolDown();
     }
 
 }
