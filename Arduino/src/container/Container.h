@@ -18,11 +18,13 @@ class Container : public ContainerTempDetection, public ContainerWasteDisposal{
     private:
         System_Status status;
         TempSensor* tempSensor;
+        Sensor* sonar;
         LightSignals* lightSignals;
         Detector* userDetector;
         Display* display;
         ButtonPanel* buttonPanel;
         Door* door;
+        double fillPercentage();
 
     public:
         Container();
@@ -34,8 +36,11 @@ class Container : public ContainerTempDetection, public ContainerWasteDisposal{
         void signalAvailability();
         void goToSleep();
         void spill();
+        void stopAccepting();
         bool openRequested();
         bool closeRequested();
+        bool isFull();
+        void receiveWaste();
 };
 
 #endif

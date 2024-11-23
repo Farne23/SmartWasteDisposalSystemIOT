@@ -3,6 +3,7 @@
 
 #define SLEEP_TIME 10000
 #define SPILL_TIME 5000
+#define RECEIVING_TIME 2000
 
 
 WasteDisposalTask :: WasteDisposalTask(ContainerWasteDisposal* container){
@@ -47,12 +48,23 @@ void WasteDisposalTask:: tick(){
         }
         break;
     case SPILLING:
-        if(this->container->closeRequested() || this->spillingStartTime + SPILL_TIME<millis()){
-            this->status = READY_TO_ACCEPT;
-            this->container->signalAvailability();
+        if(this->container->isFull()){
+            this->status = EMPTYING;
+            this->container->stopAccepting();
+
+        }else if(this->container->closeRequested() || this->spillingStartTime + SPILL_TIME<millis()){
+            this->receiveWasteStartTime = millis;
+            this->status = RECEVING_WASTE;
+            this->container->receiveWaste();
         }
         break;
     case CONTAINER_FULL:
+        break;
+    case RECEIVING_WASTE:
+        if(receiveWasteStartTime+RECEIVING_TIME < millis()){
+                this->status = READY_TO_ACCEPT;
+                this->container->signalAvailability();
+            }
         break;
     case EMPTYING:
         break;

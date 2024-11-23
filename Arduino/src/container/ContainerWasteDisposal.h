@@ -10,6 +10,9 @@ class ContainerWasteDisposal{
         virtual void goToSleep() = 0;
         virtual bool openRequested() =0;
         virtual bool closeRequested() =0;
+        virtual bool isFull()=0;
+        virtual void receiveWaste()=0;
+        virtual void stopAccepting()=0;
 };
 
 #endif

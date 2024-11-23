@@ -1,6 +1,9 @@
 #include "Container.h"
 #include "pins/HwInterfaces.h"
 
+#define CONTAINER_FULL_DISTANCE = 0.15 //threshold rappresenting the distance  the sonar has to sense in order to consider the container full
+#define CONTAINER_EMPTY_DISTANCE = 0.25
+
 Container::Container(){
     this->tempSensor = new TempSensor(TEMP_SENSOR_PIN);
     this->lightSignals = new LightSignals(new Led(GREEN_LED_PIN), new Led(RED_LED_PIN));
@@ -27,7 +30,7 @@ bool Container::userDetected(){
 
 
 void Container::signalAvailability(){
-    this->door->close();
+    //this->door->close();
     this->lightSignals->signalAvailability();
     this->display->displayReadyToOpen();
 }
@@ -51,4 +54,23 @@ bool Container::closeRequested(){
 void Container::spill(){
     this->display->displayReadyToClose();
     this->door->open();
+}
+
+bool Container::isFull(){
+    return this->fillPercentage()>=100;
+}
+
+double Container::fillPercentage(){
+    return ((this->sonar->sense()-CONTAINER_EMPTY_DISTANCE)/(CONTAINER_FULL_DISTRANCE-CONTAINER_EMPTY_DISTANCE))*100;
+}
+
+void Container::stopAccepting(){
+    this->door->close();
+    this->lightSignals->SignalProblem();
+    this->display->displayFull();
+}
+
+void Container::receiveWaste(){
+    this->display->displayReceived();
+    this->door->close();
 }
