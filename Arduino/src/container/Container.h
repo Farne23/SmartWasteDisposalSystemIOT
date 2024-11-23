@@ -46,6 +46,7 @@ class Container : public ContainerTempDetection, public ContainerWasteDisposal{
         void receiveWaste();
         bool emptyRequested();
         void empty();
+        bool hasNormalBehaviour();
 };
 
 #endif

@@ -78,3 +78,7 @@ bool Container::emptyRequested(){
 void Container::empty(){
     this->door->empty();
 }
+
+bool Container::hasNormalBehaviour(){
+    return this->status == NORMAL;
+}
