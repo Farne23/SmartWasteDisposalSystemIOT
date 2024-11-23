@@ -5,8 +5,11 @@ class ContainerWasteDisposal{
     public:
         virtual bool userDetected() = 0;
         virtual void activateSleepMode() = 0;
+        virtual void spill() = 0;
         virtual void signalAvailability() = 0;
         virtual void goToSleep() = 0;
+        virtual bool openRequested() =0;
+        virtual bool closeRequested() =0;
 };
 
 #endif

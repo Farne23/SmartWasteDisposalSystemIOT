@@ -10,8 +10,8 @@ using namespace std;
 class Display {
     public:
         Display();
-        void displayOpen(); //Press open to enter waste
-        void displayClose(); //Press close when done
+        void displayReadyToOpen(); //Press open to enter waste
+        void displayReadyToClose(); //Press close when done
         void displayReceived(); //Waste received
         void displayFull(); //Container full
         void displayProblem(); //Problem detected

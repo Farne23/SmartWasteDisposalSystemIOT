@@ -20,6 +20,9 @@ class Container : public ContainerTempDetection, public ContainerWasteDisposal{
         TempSensor* tempSensor;
         LightSignals* lightSignals;
         Detector* userDetector;
+        Display* display;
+        ButtonPanel* buttonPanel;
+        Door* door;
 
     public:
         Container();
@@ -30,6 +33,9 @@ class Container : public ContainerTempDetection, public ContainerWasteDisposal{
         bool userDetected();
         void signalAvailability();
         void goToSleep();
+        void spill();
+        bool openRequested();
+        bool closeRequested();
 };
 
 #endif

@@ -18,6 +18,7 @@ class WasteDisposalTask : public Task {
         WasteDisposalTaskStatus status;
         ContainerWasteDisposal* container;
         long noUserStartTime;
+        long spillingStartTime;
         void initBehaviour();
     public:
         WasteDisposalTask(ContainerWasteDisposal* container);

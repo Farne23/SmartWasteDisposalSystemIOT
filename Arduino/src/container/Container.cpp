@@ -27,9 +27,28 @@ bool Container::userDetected(){
 
 
 void Container::signalAvailability(){
+    this->door->close();
     this->lightSignals->signalAvailability();
+    this->display->displayReadyToOpen();
 }
 
 void Container::goToSleep(){
     this->lightSignals->signalSleep();
+}
+
+bool Container::openRequested(){
+    return this->buttonPanel->openRequested();
+}
+
+bool Container::openRequested(){
+    return this->buttonPanel->openRequested();
+}
+
+bool Container::closeRequested(){
+    return this->buttonPanel->closeRequested();
+}
+
+void Container::spill(){
+    this->display->displayReadyToClose();
+    this->door->open();
 }

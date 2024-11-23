@@ -2,6 +2,7 @@
 #include "WasteDisposalTask.h"
 
 #define SLEEP_TIME 10000
+#define SPILL_TIME 5000
 
 
 WasteDisposalTask :: WasteDisposalTask(ContainerWasteDisposal* container){
@@ -18,10 +19,14 @@ void WasteDisposalTask:: tick(){
     {
     case READY_TO_ACCEPT:
         if(!this->container->userDetected()){
-            this->noUserStartTime = millis();
             this->status = WAITING_FOR_USER;
+            this->noUserStartTime = millis();
         }else{
-            ///Verifica apertura bottone
+            if(this->container->openRequested()){
+                this->status = SPILLING;
+                this->container->spill();
+                this->spillingStartTIme = millis();
+            }
         }
         break;
     case WAITING_FOR_USER:
@@ -42,6 +47,10 @@ void WasteDisposalTask:: tick(){
         }
         break;
     case SPILLING:
+        if(this->container->closeRequested() || this->spillingStartTime + SPILL_TIME<millis()){
+            this->status = READY_TO_ACCEPT;
+            this->container->signalAvailability();
+        }
         break;
     case CONTAINER_FULL:
         break;
