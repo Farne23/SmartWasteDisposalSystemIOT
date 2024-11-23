@@ -1,8 +1,6 @@
 #ifndef __TASK__
 #define __TASK__
 
-#include "GlobalEnviroment.h"
-
 /**
  * Abastract class rappresenting an interface for a generic task of FSM.
  */

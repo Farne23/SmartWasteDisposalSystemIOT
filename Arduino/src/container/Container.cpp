@@ -1,5 +1,5 @@
 #include "Container.h"
-#include "pins/HwInterfaces.h"
+#include "settings/HwInterfaces.h"
 
 #define CONTAINER_FULL_DISTANCE 0.15 //threshold rappresenting the distance  the sonar has to sense in order to consider the container full
 #define CONTAINER_EMPTY_DISTANCE 0.25

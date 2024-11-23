@@ -9,12 +9,11 @@ using namespace std;
 
 class Display {
     public:
-        Display();
-        void displayReadyToOpen(); //Press open to enter waste
-        void displayReadyToClose(); //Press close when done
-        void displayReceived(); //Waste received
-        void displayFull(); //Container full
-        void displayProblem(); //Problem detected
+        virtual void displayReadyToOpen()= 0;//Press open to enter waste
+        virtual void displayReadyToClose()= 0;  //Press close when done
+        virtual void displayReceived()= 0; //Waste received
+        virtual void displayFull()= 0; //Container full
+        virtual void displayProblem()= 0; //Problem detected
 };
 
 #endif
