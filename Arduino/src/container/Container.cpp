@@ -1,8 +1,8 @@
 #include "Container.h"
 #include "pins/HwInterfaces.h"
 
-#define CONTAINER_FULL_DISTANCE = 0.15 //threshold rappresenting the distance  the sonar has to sense in order to consider the container full
-#define CONTAINER_EMPTY_DISTANCE = 0.25
+#define CONTAINER_FULL_DISTANCE 0.15 //threshold rappresenting the distance  the sonar has to sense in order to consider the container full
+#define CONTAINER_EMPTY_DISTANCE 0.25
 
 Container::Container(){
     this->tempSensor = new TempSensor(TEMP_SENSOR_PIN);
@@ -43,10 +43,6 @@ bool Container::openRequested(){
     return this->buttonPanel->openRequested();
 }
 
-bool Container::openRequested(){
-    return this->buttonPanel->openRequested();
-}
-
 bool Container::closeRequested(){
     return this->buttonPanel->closeRequested();
 }
@@ -61,16 +57,24 @@ bool Container::isFull(){
 }
 
 double Container::fillPercentage(){
-    return ((this->sonar->sense()-CONTAINER_EMPTY_DISTANCE)/(CONTAINER_FULL_DISTRANCE-CONTAINER_EMPTY_DISTANCE))*100;
+    return ((this->sonar->sense()-CONTAINER_EMPTY_DISTANCE)/(CONTAINER_FULL_DISTANCE-CONTAINER_EMPTY_DISTANCE))*100;
 }
 
 void Container::stopAccepting(){
     this->door->close();
-    this->lightSignals->SignalProblem();
+    this->lightSignals->signalProblem();
     this->display->displayFull();
 }
 
 void Container::receiveWaste(){
     this->display->displayReceived();
     this->door->close();
+}
+
+bool Container::emptyRequested(){
+    ///Notifica di empty
+}
+
+void Container::empty(){
+    this->door->empty();
 }

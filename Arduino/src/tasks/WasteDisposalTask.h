@@ -21,6 +21,7 @@ class WasteDisposalTask : public Task {
         long noUserStartTime;
         long spillingStartTime;
         long receiveWasteStartTime;
+        long emptyingStartTime;
         void initBehaviour();
     public:
         WasteDisposalTask(ContainerWasteDisposal* container);

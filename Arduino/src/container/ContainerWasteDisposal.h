@@ -13,6 +13,8 @@ class ContainerWasteDisposal{
         virtual bool isFull()=0;
         virtual void receiveWaste()=0;
         virtual void stopAccepting()=0;
+        virtual bool emptyRequested()=0;
+        virtual void empty()=0;
 };
 
 #endif
