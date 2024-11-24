@@ -19,13 +19,12 @@ public class Dashboard extends JFrame implements ControlPanelView {
     private static final long serialVersionUID = 1L;
     private static final int WIDTH = 900,
             HEIGHT = 800,
-            PADDING = 40,
-            B_HEIGHT = 100;
+            PADDING = 40;
     private static final Font FONT = new Font("Arial", Font.BOLD, 20);
     private  static final String TITLE = "Smart Waste Disposal System";
     private final JButton empty = new JButton("Empty"),
             repair = new JButton("Repair");
-    private MyChartPanel chart;
+    private MyChart chart = new MyChart();
     private final JLabel temp = new JLabel("Temperature: ---°C"),
             wasteLv = new JLabel("Waste Level: ---%");
     private final JPanel north = new JPanel(new GridBagLayout()),
@@ -75,6 +74,7 @@ public class Dashboard extends JFrame implements ControlPanelView {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(PADDING, 0, PADDING, 0);
         gbc.weightx = 0.5;
         this.north.add(this.empty, gbc);
         gbc.gridx = 1;
@@ -89,9 +89,12 @@ public class Dashboard extends JFrame implements ControlPanelView {
         gbc.anchor = GridBagConstraints.NORTH;
         gbc.gridy = 1; // Seconda riga
         this.south.add(this.temp, gbc);
-        //gbc.gridy = 1;
-        //gbc.weighty = 1.0;
-        //this.south.add(this.chart, gbc);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.gridy = 0;
+        gbc.gridx = 1;
+        gbc.weighty = 1.0;
+        this.south.add(this.chart.getPanel(), gbc);
         content.add(this.north, BorderLayout.NORTH);
         content.add(this.south, BorderLayout.CENTER);
         

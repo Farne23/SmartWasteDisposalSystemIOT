@@ -37,5 +37,4 @@ public class DashboardController implements ControlPanelController {
     public void repair() {
         this.model.coolDown();
     }
-
 }
