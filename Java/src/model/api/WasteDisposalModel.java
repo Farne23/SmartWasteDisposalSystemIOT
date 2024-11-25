@@ -2,8 +2,6 @@ package model.api;
 
 import java.util.Optional;
 
-import model.communication.LevelInfo;
-import model.communication.TempInfo;
 import util.Pair;
 
 /**
@@ -18,7 +16,7 @@ public interface WasteDisposalModel {
      * a flag that expresses if the container is in alarm state (false) or
      * not (true);
      */
-    public Pair<Optional<LevelInfo>, Optional<TempInfo>> getStatus();
+    public Optional<Pair<Double, Pair<Double, Boolean>>> getStatus();
     /**
      * The container gets emptied.
      */

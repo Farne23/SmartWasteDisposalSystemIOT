@@ -3,16 +3,15 @@ package model;
 import java.util.Optional;
 
 import model.api.WasteDisposalModel;
-import model.communication.LevelInfo;
 import model.communication.SerialCommChannel;
-import model.communication.TempInfo;
 import model.communication.api.CommChannel;
 import util.Pair;
 
 public class WasteDisposalImpl implements WasteDisposalModel {
 
-    private final int BAUDRATE = 9600;
-    private Pair<Optional<LevelInfo>, Optional<TempInfo>> lastValue;
+    private final int BAUDRATE = 9600,
+            NVALUES = 3;
+    private Optional<Pair<Double, Pair<Double, Boolean>>> lastValue;
     private Optional<CommChannel> channel;
 
     public WasteDisposalImpl(String port) {
@@ -22,11 +21,11 @@ public class WasteDisposalImpl implements WasteDisposalModel {
             System.out.println("Invalid port");
             this.channel = Optional.empty();
         }
-        this.lastValue = new Pair<>(Optional.empty(), Optional.empty());
+        this.lastValue = Optional.empty();
     }
 
     @Override
-    public Pair<Optional<LevelInfo>, Optional<TempInfo>> getStatus() {
+    public Optional<Pair<Double, Pair<Double, Boolean>>> getStatus() {
         if(this.channel.isPresent() && this.channel.get().isMsgAvailable()) {
             
             /*
@@ -40,20 +39,14 @@ public class WasteDisposalImpl implements WasteDisposalModel {
                 // la stringa non continene ";" non divide e basta
                 String[] values = msg.split(";");
                 try {
-                    if (values.length == 1) {
-                        double level = Double.parseDouble(values[0]);
-                        // if level in [0.0, 1.0]
-                        if (1.0 >= level && level >= 0.0) {
-                            this.lastValue = new Pair<>(Optional.of(new LevelInfo(level)),
-                                    Optional.empty());
+                    if (values.length == NVALUES) {
+                        double level = Double.parseDouble(values[0]),
+                                temp = Double.parseDouble(values[1]);
+                        boolean alarm = Boolean.parseBoolean(values[2]);
+                        if (level <= 1.0 && level >= 0.0) {
+                            this.lastValue = Optional.of(new Pair<>(level, new Pair<>(temp, alarm)));
                             return this.lastValue;
                         }
-                    } else {
-                        double temp = Double.parseDouble(values[0]);
-                        boolean alarm = Boolean.parseBoolean(values[1]);
-                        this.lastValue = new Pair<>(Optional.empty(),
-                                Optional.of(new TempInfo(temp, alarm)));
-                        return this.lastValue;
                     }
                     throw new NumberFormatException();
                 } catch (NumberFormatException e) {

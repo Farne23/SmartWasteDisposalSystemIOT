@@ -21,11 +21,10 @@ public class DashboardController implements ControlPanelController {
     @Override
     public void refresh() {
         var data = this.model.getStatus();
-        if (data.getX().isPresent()) {
-            this.view.updateLv(data.getX().get().getLevel());
-        } else {
-            this.view.updateTemp(data.getY().get().getTemperature(),
-                    data.getY().get().getState());
+        if (data.isPresent()) {
+            this.view.update(data.get().getX(),
+                    data.get().getY().getX(),
+                    data.get().getY().getY());
         }
     }
 

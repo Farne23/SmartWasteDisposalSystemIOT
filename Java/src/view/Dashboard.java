@@ -53,19 +53,12 @@ public class Dashboard extends JFrame implements ControlPanelView {
     }
 
     @Override
-    public void updateLv(double level) {
+    public void update(double level, double temp, boolean alarmOn) {
         this.wasteLv.setText("Waste Level: " + level + "%");
-        // add data to the graphic
-        this.chart.addLvData(level);
-        this.revalidate();
-        this.repaint();
-    }
-
-    public void updateTemp(double temp, boolean alarmOn) {
         this.temp.setText("Temperature: " + temp + "°C");
         this.repair.setEnabled(alarmOn);
         // add data to the graphic
-        this.chart.addTempData(temp, alarmOn);
+        this.chart.addData(level, temp, alarmOn);
         this.revalidate();
         this.repaint();
     }
