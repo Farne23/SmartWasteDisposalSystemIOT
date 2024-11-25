@@ -6,16 +6,10 @@
 class Dashboard{
     public:
         Dashboard();
-        void setTemperature(double temp, bool alarmOn);
-        void setLevel(double level);
+        void communicateTemp(double temp, bool alarmOn);
+        void communicateLv(double level);
     private:
         MsgServiceClass service;
-        double temperature;
-        double wasteLv;
-        bool alarmOn;
-        bool temp_defined;
-        bool lv_defined;
-        void communicate();
 };
 
 #endif
