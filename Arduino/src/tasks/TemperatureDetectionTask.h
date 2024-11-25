@@ -2,6 +2,7 @@
 #define __TEMPERATUREDETECTIONTASK__
 
 #include "Task.h"
+#include "container/ContainerTempDetection.h"
 
 enum TemperatureDetectionTaskStatus{
     TEMPERATURE_DETECTION,
@@ -12,8 +13,11 @@ enum TemperatureDetectionTaskStatus{
 class TemperatureDetectionTask : public Task {
     private:
         TemperatureDetectionTaskStatus status;
-        void initComponents();
+        ContainerTempDetection* container;
+        long alertStartTime;
+        void initBehaviour();
     public:
+        TemperatureDetectionTask(ContainerTempDetection* container);
         void init();
         void tick();
 };
