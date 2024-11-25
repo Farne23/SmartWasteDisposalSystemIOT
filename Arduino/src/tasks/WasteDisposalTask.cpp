@@ -55,7 +55,7 @@ void WasteDisposalTask:: tick(){
                 this->container->stopAccepting();
 
             }else if(this->container->closeRequested() || this->spillingStartTime + SPILL_TIME<millis()){
-                this->receiveWasteStartTime = millis;
+                this->receiveWasteStartTime = millis();
                 this->status = RECEIVING_WASTE;
                 this->container->receiveWaste();
             }
