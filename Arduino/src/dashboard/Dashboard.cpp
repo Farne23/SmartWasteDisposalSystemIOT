@@ -3,10 +3,29 @@
 Dashboard::Dashboard(){
 }
 
-void Dashboard::communicateLv(double level) {;
-    this->service.sendMsg(String(level));
+void Dashboard::communicateStatus(double level, double temp, bool alarm) {
+    this->service.sendMsg(String(level) + ";" + String(temp) +
+        ";" + String(alarm));
 }
 
-void Dashboard::communicateTemp(double temp, bool alarmOn) {
-    this->service.sendMsg(String(temp) + ";" + String(alarmOn));
+void Dashboard::readRequests() {
+    if (service.isMsgAvailable()) {
+        Msg * req = service.receiveMsg();
+        // BISOGNA CAPIRE SE GETCONTENT() TORNA UNA STRINGA
+        // O ALTRO.
+        this->emptyPressed = req->getContent() == "L";
+        this->repairPressed = req->getContent() == "T";
+    }
+}
+
+bool Dashboard::getEmpty() {
+    bool tmp = this->emptyPressed;
+    this->emptyPressed = false;
+    return tmp;
+}
+
+bool Dashboard::getRepair() {
+    bool tmp = this->repairPressed;
+    this->repairPressed = false;
+    return tmp;
 }
