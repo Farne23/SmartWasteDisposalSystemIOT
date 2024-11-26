@@ -9,10 +9,10 @@
 
 class Door {
     public:
-        virtual Door(ServoMotor* servo);
-        virtual void open() = 0;
-        virtual void close() = 0;
-        virtual void empty() = 0;
+        Door(ServoMotor* servo);
+        void open();
+        void close();
+        void empty();
     private:
         ServoMotor* servo;
 };

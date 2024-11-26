@@ -16,13 +16,13 @@ void GUIUpdateTask ::tick()
     switch (status)
     {
     case MONITORING:
-        if (!this->container->hasNormaBehaviour() || this->contaier->isFull())
+        if (!this->container->hasNormalBehaviour() || this->container->isFull())
             {
                 this->status = INPUT_WAITING;
             }
         break;
     case INPUT_WAITING:
-        if (this->container->hasNormaBehaviour() && !this->container->isFull())
+        if (this->container->hasNormalBehaviour() && !this->container->isFull())
             {
                 this->status = MONITORING;
             }

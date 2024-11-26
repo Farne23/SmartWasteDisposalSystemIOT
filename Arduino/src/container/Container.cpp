@@ -6,13 +6,18 @@
 
 Container::Container(){
     this->tempSensor = new TempSensor(TEMP_SENSOR_PIN);
+    this->sonar = new Sonar(SONAR_TRIG,SONAR_ECHO);
     this->lightSignals = new LightSignals(new Led(GREEN_LED_PIN), new Led(RED_LED_PIN));
     this->userDetector = new UserDetector(USER_DETECTOR_PIN);
+    this->display = new DisplayImpl();
+    this->buttonPanel = new ButtonPanel(new ButtonImpl(OPEN_BUTTON_PIN),new ButtonImpl(CLOSE_BUTTON_PIN));
+    this->door = new Door(new ServoMotorImpl(SERVO_MOTOR_PIN));
+    this->dashboard = new Dashboard();
     this->status=NORMAL;
 }
 
 double Container::readTemperature(){
-    this->temperature = this->tempSensor->sense()
+    this->temperature = this->tempSensor->sense();
     return this->temperature;
 }
 
@@ -57,10 +62,10 @@ void Container::spill(){
 }
 
 bool Container::isFull(){
-    return this->fillPercentage()>=100;
+    return (this->getFillPercentage())>=100;
 }
 
-double Container::fillPercentage(){
+double Container::getFillPercentage(){
     this->fillPercentage = ((this->sonar->sense()-CONTAINER_EMPTY_DISTANCE)/(CONTAINER_FULL_DISTANCE-CONTAINER_EMPTY_DISTANCE))*100;
     return this->fillPercentage ;
 }
@@ -77,7 +82,7 @@ void Container::receiveWaste(){
 }
 
 bool Container::emptyRequested(){
-    return this->dashboard->emptyRequested;
+    return this->dashboard->getEmpty();
 }
 
 void Container::empty(){
@@ -89,9 +94,9 @@ bool Container::hasNormalBehaviour(){
 }
 
 void Container::updateDashboard(){
-    this->dashbboard->communicateStatus(fillPercentage, temperature, this->status==PROBLEM_DETECTED);
+    this->dashboard->communicateStatus(fillPercentage, temperature, this->status==PROBLEM_DETECTED);
 }
 
-void Containter :: getDashboardInputs(){
+void Container :: getDashboardInputs(){
     this->dashboard->readRequests();
 }

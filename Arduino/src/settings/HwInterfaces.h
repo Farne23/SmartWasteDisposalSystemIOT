@@ -10,4 +10,9 @@ const int CLOSE_BUTTON_PIN = 5;
 const int TEMP_SENSOR_PIN = 6;
 const int USER_DETECTOR_PIN = 8;
 
+const int SONAR_TRIG = 6;
+const int SONAR_ECHO = 8;
+
+const int SERVO_MOTOR_PIN= 8;
+
 #endif

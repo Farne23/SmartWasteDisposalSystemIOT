@@ -8,9 +8,15 @@
 #include "devices/lights/Led.h"
 #include "devices/displays/Display.h"
 #include "devices/buttons/ButtonPanel.h"
+#include "devices/buttons/ButtonImpl.h"
+#include "devices/sensors/Sonar.h"
+#include "dashboard/Dashboard.h"
 #include "devices/actuators/Door.h"
+#include "devices/actuators/ServoMotorImpl.h"
 #include "ContainerTempDetection.h"
 #include "ContainerWasteDisposal.h"
+#include "ContainerGUIUpdate.h"
+#include "devices/displays/DisplayImpl.h"
 
 enum System_Status {
     NORMAL,
@@ -20,16 +26,18 @@ enum System_Status {
 class Container : public ContainerTempDetection, public ContainerWasteDisposal, public ContainerGUIUpdate{
     private:
         System_Status status;
-        TempSensor* tempSensor;
+        Sensor* tempSensor;
         Sensor* sonar;
         LightSignals* lightSignals;
         Detector* userDetector;
         Display* display;
         ButtonPanel* buttonPanel;
         Door* door;
+        Dashboard* dashboard;
         double fillPercentage;
         double fillLevel;
         double temperature;
+        double getFillPercentage();
 
     public:
         Container();
