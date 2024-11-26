@@ -4,7 +4,7 @@
 #include "timer/Timer.h"
 #include "tasks/Task.h"
 
-#define MAX_TASKS 2
+#define MAX_TASKS 3
 
 class Scheduler {
 

@@ -1,4 +1,4 @@
-#include "GUIUpadateTask.h"
+#include "GUIUpdateTask.h"
 
 GUIUpdateTask ::GUIUpdateTask(ContainerGUIUpdate *container)
 {

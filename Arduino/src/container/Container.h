@@ -46,14 +46,14 @@ class Container : public ContainerTempDetection, public ContainerWasteDisposal, 
         double readTemperature();
 
         bool userDetected();
-        void signalAvailability();
-        void goToSleep();
         void spill();
-        void stopAccepting();
+        void signalAvailability();
+        void goToSleep() ;
         bool openRequested();
         bool closeRequested();
         bool isFull();
         void receiveWaste();
+        void stopAccepting();
         bool emptyRequested();
         void empty();
         bool hasNormalBehaviour();
