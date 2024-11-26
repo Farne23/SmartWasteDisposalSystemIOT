@@ -1,4 +1,4 @@
-#ifndef __CONTAINERTEMPDETECION__
+#ifndef __CONTAINERTEMPDETECTION__
 #define __CONTAINERTEMPDETECTION__
 
 class ContainerTempDetection{
