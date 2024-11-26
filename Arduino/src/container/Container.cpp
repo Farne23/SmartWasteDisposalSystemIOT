@@ -22,6 +22,9 @@ void Container::signalProblem(){
 }
 
 bool Container::isFixed(){
+    if(this->dashboard->getRepair()){
+        this->status=NORMAL;
+    }
     return this->status==NORMAL;
 }
 
@@ -74,7 +77,7 @@ void Container::receiveWaste(){
 }
 
 bool Container::emptyRequested(){
-    ///Notifica di empty
+    return this->dashboard->emptyRequested;
 }
 
 void Container::empty(){
@@ -87,4 +90,8 @@ bool Container::hasNormalBehaviour(){
 
 void Container::updateDashboard(){
     this->dashbboard->communicateStatus(fillPercentage, temperature, this->status==PROBLEM_DETECTED);
+}
+
+void Containter :: getDashboardInputs(){
+    this->dashboard->readRequests();
 }
