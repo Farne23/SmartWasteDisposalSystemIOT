@@ -51,6 +51,7 @@ class Container : public ContainerTempDetection, public ContainerWasteDisposal, 
         bool hasNormalBehaviour();
 
         void updateDashboard();
+        void getDashboardInputs();
 };
 
 #endif

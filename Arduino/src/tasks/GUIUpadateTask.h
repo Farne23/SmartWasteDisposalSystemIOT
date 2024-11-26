@@ -5,7 +5,8 @@
 #include "container/ContainerGUIUpdate.h"
 
 enum GUIUpdateTStatus{
-    MONITORING
+    MONITORING,
+    INPUT_WAITING
 };
 class GUIUpdateTask: public Task {
     private:

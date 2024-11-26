@@ -86,5 +86,5 @@ bool Container::hasNormalBehaviour(){
 }
 
 void Container::updateDashboard(){
-    
+    this->dashbboard->communicateStatus(fillPercentage, temperature, this->status==PROBLEM_DETECTED);
 }
