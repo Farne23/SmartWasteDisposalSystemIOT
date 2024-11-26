@@ -12,7 +12,8 @@ Container::Container(){
 }
 
 double Container::readTemperature(){
-    return this->tempSensor->sense();
+    this->temperature = this->tempSensor->sense()
+    return this->temperature;
 }
 
 void Container::signalProblem(){
@@ -21,6 +22,9 @@ void Container::signalProblem(){
 }
 
 bool Container::isFixed(){
+    if(this->dashboard->getRepair()){
+        this->status=NORMAL;
+    }
     return this->status==NORMAL;
 }
 
@@ -57,7 +61,8 @@ bool Container::isFull(){
 }
 
 double Container::fillPercentage(){
-    return ((this->sonar->sense()-CONTAINER_EMPTY_DISTANCE)/(CONTAINER_FULL_DISTANCE-CONTAINER_EMPTY_DISTANCE))*100;
+    this->fillPercentage = ((this->sonar->sense()-CONTAINER_EMPTY_DISTANCE)/(CONTAINER_FULL_DISTANCE-CONTAINER_EMPTY_DISTANCE))*100;
+    return this->fillPercentage ;
 }
 
 void Container::stopAccepting(){
@@ -72,7 +77,7 @@ void Container::receiveWaste(){
 }
 
 bool Container::emptyRequested(){
-    ///Notifica di empty
+    return this->dashboard->emptyRequested;
 }
 
 void Container::empty(){
@@ -81,4 +86,12 @@ void Container::empty(){
 
 bool Container::hasNormalBehaviour(){
     return this->status == NORMAL;
+}
+
+void Container::updateDashboard(){
+    this->dashbboard->communicateStatus(fillPercentage, temperature, this->status==PROBLEM_DETECTED);
+}
+
+void Containter :: getDashboardInputs(){
+    this->dashboard->readRequests();
 }

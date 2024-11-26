@@ -17,7 +17,7 @@ enum System_Status {
     PROBLEM_DETECTED,
     };
 
-class Container : public ContainerTempDetection, public ContainerWasteDisposal{
+class Container : public ContainerTempDetection, public ContainerWasteDisposal, public ContainerGUIUpdate{
     private:
         System_Status status;
         TempSensor* tempSensor;
@@ -27,7 +27,9 @@ class Container : public ContainerTempDetection, public ContainerWasteDisposal{
         Display* display;
         ButtonPanel* buttonPanel;
         Door* door;
-        double fillPercentage();
+        double fillPercentage;
+        double fillLevel;
+        double temperature;
 
     public:
         Container();
@@ -47,6 +49,9 @@ class Container : public ContainerTempDetection, public ContainerWasteDisposal{
         bool emptyRequested();
         void empty();
         bool hasNormalBehaviour();
+
+        void updateDashboard();
+        void getDashboardInputs();
 };
 
 #endif
