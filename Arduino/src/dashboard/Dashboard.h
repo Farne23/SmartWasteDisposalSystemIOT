@@ -6,10 +6,14 @@
 class Dashboard{
     public:
         Dashboard();
-        void communicateTemp(double temp, bool alarmOn);
-        void communicateLv(double level);
+        void communicateStatus(double level, double temp, bool alarmOn);
+        void readRequests();
+        bool getEmpty();
+        bool getRepair();
     private:
         MsgServiceClass service;
+        bool emptyPressed;
+        bool repairPressed;
 };
 
 #endif
