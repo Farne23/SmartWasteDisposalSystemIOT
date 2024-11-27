@@ -1,18 +1,14 @@
 #ifndef __HWINTERFACES__
 #define __HWINTERFACES__
 
-const int GREEN_LED_PIN = 2;
-const int RED_LED_PIN = 3;
-
-const int OPEN_BUTTON_PIN = 4;
-const int CLOSE_BUTTON_PIN = 5;
-
-const int TEMP_SENSOR_PIN = 6;
-const int USER_DETECTOR_PIN = 8;
-
-const int SONAR_TRIG = 6;
-const int SONAR_ECHO = 8;
-
-const int SERVO_MOTOR_PIN= 8;
+#define GREEN_LED_PIN 12
+#define RED_LED_PIN 13
+#define OPEN_BUTTON_PIN 4
+#define CLOSE_BUTTON_PIN 5
+#define TEMP_SENSOR_PIN A0
+#define USER_DETECTOR_PIN 2
+#define SONAR_TRIG 6
+#define SONAR_ECHO 7
+#define SERVO_MOTOR_PIN 8
 
 #endif

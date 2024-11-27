@@ -4,6 +4,9 @@
 #include "Task.h"
 #include "container/ContainerTempDetection.h"
 
+const unsigned int MAX_TEMP = 20;
+const unsigned long MAX_TEMP_EXCEEDING_TIME = 3000;
+
 enum TemperatureDetectionTaskStatus{
     TEMPERATURE_DETECTION,
     TEMPERATURE_EXCEEDING,

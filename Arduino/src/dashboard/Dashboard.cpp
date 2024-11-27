@@ -15,6 +15,8 @@ void Dashboard::readRequests() {
         // O ALTRO.
         this->emptyPressed = req->getContent() == "L";
         this->repairPressed = req->getContent() == "T";
+        // free memory
+        delete req;
     }
 }
 

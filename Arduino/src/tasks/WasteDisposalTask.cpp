@@ -1,12 +1,6 @@
 #include <Arduino.h>
 #include "WasteDisposalTask.h"
 
-#define SLEEP_TIME 10000
-#define SPILL_TIME 5000
-#define RECEIVING_TIME 2000
-#define EMPTY_TIME 3000
-
-
 WasteDisposalTask :: WasteDisposalTask(ContainerWasteDisposal* container){
     this->container = container;
 }

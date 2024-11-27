@@ -1,9 +1,6 @@
 #include "TemperatureDetectionTask.h"
 #include <Arduino.h>
 
-#define MAX_TEMP 20
-#define MAX_TEMP_EXCEEDING_TIME 3000
-
 TemperatureDetectionTask :: TemperatureDetectionTask(ContainerTempDetection* container){
     this->container = container;
 }

@@ -2,7 +2,7 @@
 #define __SERVOMOTORIMPL__
 
 #include "devices/actuators/ServoMotor.h"
-#include <ServoTimer2.h>
+#include "timer/ServoTimer2.h"
 
 class ServoMotorImpl: public ServoMotor {
 
