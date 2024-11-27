@@ -3,6 +3,7 @@
 
 DisplayImpl :: DisplayImpl(){
     this->lcd = new LCDisplay();
+    this->init();
 }
 
 void DisplayImpl :: init(){

@@ -3,6 +3,7 @@
 GUIUpdateTask ::GUIUpdateTask(ContainerGUIUpdate *container)
 {
     this->container = container;
+    this->initBehaviour();
 }
 
 void GUIUpdateTask ::initBehaviour()

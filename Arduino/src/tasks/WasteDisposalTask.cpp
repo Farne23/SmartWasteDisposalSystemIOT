@@ -3,11 +3,13 @@
 
 WasteDisposalTask :: WasteDisposalTask(ContainerWasteDisposal* container){
     this->container = container;
+    this->initBehaviour();
 }
 
 void WasteDisposalTask:: initBehaviour(){
     this->noUserStartTime=millis();
     this->container->signalAvailability();
+    this->status = READY_TO_ACCEPT;
 }
 
 void WasteDisposalTask:: tick(){
@@ -29,7 +31,7 @@ void WasteDisposalTask:: tick(){
         case WAITING_FOR_USER:
             if(this->container->userDetected()){
                 this->status = READY_TO_ACCEPT;
-                this->container->signalAvailability();
+                //this->container->signalAvailability();
             }else{
                 if(noUserStartTime+SLEEP_TIME < millis()){
                     this->status = SLEEPING;

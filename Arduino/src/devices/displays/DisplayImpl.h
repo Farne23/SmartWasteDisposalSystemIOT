@@ -7,9 +7,9 @@
 class DisplayImpl : public Display{
     private:
         LCDisplay* lcd;
+        virtual void init();
     public:
         DisplayImpl();
-        void init();
         virtual void displayReadyToOpen();//Press open to enter waste
         virtual void displayReadyToClose();  //Press close when done
         virtual void displayReceived(); //Waste received

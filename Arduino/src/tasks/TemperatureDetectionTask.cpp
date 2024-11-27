@@ -3,6 +3,7 @@
 
 TemperatureDetectionTask :: TemperatureDetectionTask(ContainerTempDetection* container){
     this->container = container;
+    this->initBehaviour();
 }
 
 void TemperatureDetectionTask :: initBehaviour(){
