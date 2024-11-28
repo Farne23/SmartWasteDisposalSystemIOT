@@ -1,5 +1,4 @@
 #include "TemperatureDetectionTask.h"
-#include <Arduino.h>
 
 TemperatureDetectionTask ::TemperatureDetectionTask(ContainerTempDetection *container)
 {

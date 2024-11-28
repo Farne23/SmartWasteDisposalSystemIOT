@@ -1,8 +1,5 @@
 #include "devices/actuators/Door.h"
 
-//DELETEME
-#include <Arduino.h>
-
 Door::Door(ServoMotor* servo){
     this->servo = servo;
     this->servo->on();
@@ -10,8 +7,6 @@ Door::Door(ServoMotor* servo){
 }
 
 void Door:: open(){
-    //DELETE ME
-    Serial.println("DEVO APRIRE");
     this->servo->setPosition(OPEN_DEG);
 }
 

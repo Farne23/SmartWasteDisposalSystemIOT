@@ -21,8 +21,6 @@ void WasteDisposalTask::tick()
         {
         case READY_TO_ACCEPT:
         {
-            ///DELETEME
-            Serial.println("Sto qua");
             if (this->container->openRequested())
             {
                 this->status = SPILLING;

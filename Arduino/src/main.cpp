@@ -16,9 +16,9 @@ void setup() {
   //Scheduler initialization
   scheduler.init(50);
 
-  // //Inializzazione della task per il controllo della temperatura
-  // Task* tempTask = new TemperatureDetectionTask(static_cast<ContainerTempDetection*>(container));
-  // tempTask->init(50);
+  //Inializzazione della task per il controllo della temperatura
+  Task* tempTask = new TemperatureDetectionTask(static_cast<ContainerTempDetection*>(container));
+  tempTask->init(100);
 
   //Inializzazione della task per il controllo del container
   Task* wasteDisposalTask = new WasteDisposalTask(static_cast<ContainerWasteDisposal*>(container));
@@ -28,14 +28,14 @@ void setup() {
   sleepModeManagerTask->init(200);
 
   //Inializzazione della task per l'aggiornamento della gui
-  // Task* guiUpdateTask = new GUIUpdateTask(static_cast<ContainerGUIUpdate*>(container));
-  // guiUpdateTask->init(150);
+  Task* guiUpdateTask = new GUIUpdateTask(static_cast<ContainerGUIUpdate*>(container));
+  guiUpdateTask->init(150);
 
   //Aggiunta delle task allo scheduler
-  // scheduler.addTask(tempTask);
+  scheduler.addTask(tempTask);
   scheduler.addTask(wasteDisposalTask);
   scheduler.addTask(sleepModeManagerTask);
-  // scheduler.addTask(guiUpdateTask);
+  scheduler.addTask(guiUpdateTask);
 }
 
 void loop() {
