@@ -32,7 +32,7 @@ void WasteDisposalTask::tick()
         case SPILLING:
             if (this->container->isFull())
             {
-                this->status = EMPTYING;
+                this->status = CONTAINER_FULL;
                 this->container->stopAccepting();
             }
             else if (this->container->closeRequested() || this->spillingStartTime + SPILL_TIME < millis())

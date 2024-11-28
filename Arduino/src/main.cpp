@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "tasks/TemperatureDetectionTask.h"
 #include "tasks/WasteDisposalTask.h"
+#include "tasks/SleepModeManagerTask.h"
 #include "tasks/GUIUpdateTask.h"
 #include "container/Container.h"
 #include "scheduler/Scheduler.h"
@@ -18,7 +19,10 @@ void setup() {
 
   //Inializzazione della task per il controllo del container
   Task* wasteDisposalTask = new WasteDisposalTask(static_cast<ContainerWasteDisposal*>(container));
-  wasteDisposalTask->init(100);
+  wasteDisposalTask->init(50);
+
+  Task* sleepModeManagerTask = new SleepModeManagerTask(static_cast<ContainerSleepModeManager*>(container));
+  sleepModeManagerTask->init(50);
 
   //Inializzazione della task per l'aggiornamento della gui
   // Task* guiUpdateTask = new GUIUpdateTask(static_cast<ContainerGUIUpdate*>(container));

@@ -15,6 +15,7 @@
 #include "devices/actuators/ServoMotorImpl.h"
 #include "ContainerTempDetection.h"
 #include "ContainerWasteDisposal.h"
+#include "ContainerSleepModeManager.h"
 #include "ContainerGUIUpdate.h"
 #include "devices/displays/DisplayImpl.h"
 
@@ -23,7 +24,7 @@ enum System_Status {
     PROBLEM_DETECTED,
     };
 
-class Container : public ContainerTempDetection, public ContainerWasteDisposal, public ContainerGUIUpdate{
+class Container : public ContainerTempDetection, public ContainerWasteDisposal, public ContainerGUIUpdate, public ContainerSleepModeManager{
     private:
         System_Status status;
         Sensor* tempSensor;
