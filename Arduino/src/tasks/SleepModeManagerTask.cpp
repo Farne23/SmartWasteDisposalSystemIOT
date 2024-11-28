@@ -28,7 +28,7 @@ void SleepModeManagerTask::tick()
         {
             this->status = USER_DETECTED;
         }
-        else if (noUserStartTime + SLEEP_TIME > millis())
+        else if (noUserStartTime + SLEEP_TIME < millis())
         {
             this->status = SLEEPING;
             this->container->goToSleep();

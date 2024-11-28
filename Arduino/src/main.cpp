@@ -10,8 +10,11 @@ Scheduler scheduler;
 Container* container;
 
 void setup() {
-
+  Serial.begin(9600);
+  //Container intitialization
   container = new Container();
+  //Scheduler initialization
+  scheduler.init(50);
 
   // //Inializzazione della task per il controllo della temperatura
   // Task* tempTask = new TemperatureDetectionTask(static_cast<ContainerTempDetection*>(container));
@@ -28,15 +31,11 @@ void setup() {
   // Task* guiUpdateTask = new GUIUpdateTask(static_cast<ContainerGUIUpdate*>(container));
   // guiUpdateTask->init(150);
 
-  // //Aggiunta delle task allo scheduler
+  //Aggiunta delle task allo scheduler
   // scheduler.addTask(tempTask);
-  // scheduler.addTask(wasteDisposalTask);
+  scheduler.addTask(wasteDisposalTask);
+  scheduler.addTask(sleepModeManagerTask);
   // scheduler.addTask(guiUpdateTask);
-
-  //Inizializzazione scheduler
-  scheduler.init(50);
-
-
 }
 
 void loop() {

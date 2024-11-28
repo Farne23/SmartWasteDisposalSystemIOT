@@ -51,10 +51,14 @@ void Container::signalAvailability(){
 void Container::goToSleep(){
     this->sleeping = true;
     this->lightSignals->signalSleep();
+    ///CACACACACACACA
+    this->display->displayFull();
 }
 
 void Container::wakeUp(){
     this->sleeping = false;
+    ///CACACACACACAC
+    this->display->displayReadyToOpen();
 }
 
 bool Container::openRequested(){
