@@ -26,7 +26,7 @@ void LCDisplay::printMsg(string msgName) {
         this->lcd.setCursor(ST, ST);
         this->lcd.print(lines->second.first.c_str());
         // second row, first column
-        this->lcd.setCursor(ND, ST);
+        this->lcd.setCursor(ST, ND);
         this->lcd.print(lines->second.second.c_str());
     }    
 }
