@@ -15,6 +15,7 @@
 #include "devices/actuators/ServoMotorImpl.h"
 #include "ContainerTempDetection.h"
 #include "ContainerWasteDisposal.h"
+#include "ContainerSleepModeManager.h"
 #include "ContainerGUIUpdate.h"
 #include "devices/displays/DisplayImpl.h"
 
@@ -23,7 +24,7 @@ enum System_Status {
     PROBLEM_DETECTED,
     };
 
-class Container : public ContainerTempDetection, public ContainerWasteDisposal, public ContainerGUIUpdate{
+class Container : public ContainerTempDetection, public ContainerWasteDisposal, public ContainerGUIUpdate, public ContainerSleepModeManager{
     private:
         System_Status status;
         Sensor* tempSensor;
@@ -37,6 +38,7 @@ class Container : public ContainerTempDetection, public ContainerWasteDisposal, 
         double fillPercentage;
         double fillLevel;
         double temperature;
+        bool sleeping;
         double getFillPercentage();
 
     public:
@@ -45,10 +47,8 @@ class Container : public ContainerTempDetection, public ContainerWasteDisposal, 
         bool isFixed();
         double readTemperature();
 
-        bool userDetected();
         void spill();
         void signalAvailability();
-        void goToSleep() ;
         bool openRequested();
         bool closeRequested();
         bool isFull();
@@ -60,6 +60,12 @@ class Container : public ContainerTempDetection, public ContainerWasteDisposal, 
 
         void updateDashboard();
         void getDashboardInputs();
+
+        void goToSleep();
+        void wakeUp();
+        bool userDetected();
+
+        bool isSleeping();
 };
 
 #endif

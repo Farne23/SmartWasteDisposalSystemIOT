@@ -13,24 +13,27 @@ void GUIUpdateTask ::initBehaviour()
 
 void GUIUpdateTask ::tick()
 {
-    this->container->updateDashboard();
-    switch (status)
+    if (!this->container->isSleeping())
     {
-    case MONITORING:
-        if (!this->container->hasNormalBehaviour() || this->container->isFull())
+        this->container->updateDashboard();
+        switch (status)
+        {
+        case MONITORING:
+            if (!this->container->hasNormalBehaviour() || this->container->isFull())
             {
                 this->status = INPUT_WAITING;
             }
-        break;
-    case INPUT_WAITING:
-        if (this->container->hasNormalBehaviour() && !this->container->isFull())
+            break;
+        case INPUT_WAITING:
+            if (this->container->hasNormalBehaviour() && !this->container->isFull())
             {
                 this->status = MONITORING;
             }
-        this->container->getDashboardInputs();
-        break;
+            this->container->getDashboardInputs();
+            break;
 
-    default:
-        break;
+        default:
+            break;
+        }
     }
 }

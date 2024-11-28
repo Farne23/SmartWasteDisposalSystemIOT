@@ -1,8 +1,8 @@
 #include "Container.h"
 #include "settings/HwInterfaces.h"
 
-#define CONTAINER_FULL_DISTANCE 0.15 //threshold rappresenting the distance  the sonar has to sense in order to consider the container full
-#define CONTAINER_EMPTY_DISTANCE 0.25
+#define CONTAINER_FULL_DISTANCE 0.01 //threshold rappresenting the distance  the sonar has to sense in order to consider the container full
+#define CONTAINER_EMPTY_DISTANCE 0.06
 
 Container::Container(){
     this->tempSensor = new TempSensor(TEMP_SENSOR_PIN);
@@ -37,6 +37,10 @@ bool Container::userDetected(){
     return this->userDetector->detect();
 }
 
+bool Container::isSleeping(){
+    return sleeping;
+}
+
 
 void Container::signalAvailability(){
     //this->door->close();
@@ -45,7 +49,12 @@ void Container::signalAvailability(){
 }
 
 void Container::goToSleep(){
-    this->lightSignals->signalSleep();
+    this->sleeping = true;
+    //this->lightSignals->signalSleep();
+}
+
+void Container::wakeUp(){
+    this->sleeping = false;
 }
 
 bool Container::openRequested(){
