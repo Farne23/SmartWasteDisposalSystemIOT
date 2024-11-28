@@ -19,7 +19,7 @@ bool ButtonPanel::closeRequested(){
 
 bool ButtonPanel::actionRequested(Button* button){
     long time = millis();
-    if(button->getLastSyncTime() + BUTTON_SYNC_INTERVAL > time){
+    if(button->getLastSyncTime() + BUTTON_SYNC_INTERVAL < time){
         button->sync();
     }
     return button->isPressed();

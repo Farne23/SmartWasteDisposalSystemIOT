@@ -25,7 +25,7 @@ void setup() {
   wasteDisposalTask->init(50);
 
   Task* sleepModeManagerTask = new SleepModeManagerTask(static_cast<ContainerSleepModeManager*>(container));
-  sleepModeManagerTask->init(50);
+  sleepModeManagerTask->init(200);
 
   //Inializzazione della task per l'aggiornamento della gui
   // Task* guiUpdateTask = new GUIUpdateTask(static_cast<ContainerGUIUpdate*>(container));

@@ -4,9 +4,9 @@
 #include "Task.h"
 #include "container/ContainerWasteDisposal.h"
 
-const unsigned long SPILL_TIME = 5000;
-const unsigned long RECEIVING_TIME = 2000;
-const unsigned long EMPTY_TIME = 3000;
+const unsigned long SPILL_TIME = 6000;
+const unsigned long RECEIVING_TIME = 4000;
+const unsigned long EMPTY_TIME = 4000;
 
 enum WasteDisposalTaskStatus
 {
