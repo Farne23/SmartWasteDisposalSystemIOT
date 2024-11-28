@@ -4,19 +4,22 @@
 #include "Task.h"
 #include "container/ContainerGUIUpdate.h"
 
-enum GUIUpdateStatus{
+enum GUIUpdateStatus
+{
     MONITORING,
     INPUT_WAITING
 };
-class GUIUpdateTask: public Task {
-    private:
-        GUIUpdateStatus status;
-        ContainerGUIUpdate* container;
-        void initBehaviour();
-    public:
-        GUIUpdateTask(ContainerGUIUpdate* container);
-        void init();
-        void tick();
+class GUIUpdateTask : public Task
+{
+private:
+    GUIUpdateStatus status;
+    ContainerGUIUpdate *container;
+    void initBehaviour();
+
+public:
+    GUIUpdateTask(ContainerGUIUpdate *container);
+    void init();
+    void tick();
 };
 
 #endif

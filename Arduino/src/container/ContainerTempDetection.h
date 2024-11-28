@@ -6,6 +6,7 @@ class ContainerTempDetection{
         virtual void signalProblem() = 0;
         virtual bool isFixed() = 0;
         virtual double readTemperature() = 0;
+        virtual bool isSleeping() = 0;
 };
 
 #endif

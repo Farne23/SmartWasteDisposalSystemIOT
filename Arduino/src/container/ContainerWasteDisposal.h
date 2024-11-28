@@ -3,10 +3,8 @@
 
 class ContainerWasteDisposal{
     public:
-        virtual bool userDetected() = 0;
         virtual void spill() = 0;
         virtual void signalAvailability() = 0;
-        virtual void goToSleep() = 0;
         virtual bool openRequested() =0;
         virtual bool closeRequested() =0;
         virtual bool isFull()=0;
@@ -15,6 +13,7 @@ class ContainerWasteDisposal{
         virtual bool emptyRequested()=0;
         virtual void empty()=0;
         virtual bool hasNormalBehaviour()=0;
+        virtual bool isSleeping() = 0;
 };
 
 #endif

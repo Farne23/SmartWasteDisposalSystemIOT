@@ -37,6 +37,7 @@ class Container : public ContainerTempDetection, public ContainerWasteDisposal, 
         double fillPercentage;
         double fillLevel;
         double temperature;
+        bool sleeping;
         double getFillPercentage();
 
     public:
@@ -45,10 +46,8 @@ class Container : public ContainerTempDetection, public ContainerWasteDisposal, 
         bool isFixed();
         double readTemperature();
 
-        bool userDetected();
         void spill();
         void signalAvailability();
-        void goToSleep() ;
         bool openRequested();
         bool closeRequested();
         bool isFull();
@@ -60,6 +59,12 @@ class Container : public ContainerTempDetection, public ContainerWasteDisposal, 
 
         void updateDashboard();
         void getDashboardInputs();
+
+        void goToSleep();
+        void wakeUp();
+        bool userDetected();
+
+        bool isSleeping();
 };
 
 #endif

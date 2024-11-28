@@ -37,6 +37,10 @@ bool Container::userDetected(){
     return this->userDetector->detect();
 }
 
+bool Container::isSleeping(){
+    return sleeping;
+}
+
 
 void Container::signalAvailability(){
     //this->door->close();
@@ -45,7 +49,12 @@ void Container::signalAvailability(){
 }
 
 void Container::goToSleep(){
+    this->sleeping = true;
     this->lightSignals->signalSleep();
+}
+
+void Container::wakeUp(){
+    this->sleeping = false;
 }
 
 bool Container::openRequested(){
