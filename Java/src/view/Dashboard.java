@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -20,11 +21,12 @@ public class Dashboard extends JFrame implements ControlPanelView {
     private static final int WIDTH = 900,
             HEIGHT = 800,
             PADDING = 40;
+    private final Color BG = new Color(32, 64, 96);
     private static final Font FONT = new Font("Arial", Font.BOLD, 20);
     private  static final String TITLE = "Smart Waste Disposal System";
     private final JButton empty = new JButton("Empty"),
             repair = new JButton("Repair");
-    private MyChart chart = new MyChart();
+    private MyChart chart = new MyChart(BG, new Font("Arial", Font.PLAIN, 12));
     private final JLabel temp = new JLabel("Temperature: ---°C"),
             wasteLv = new JLabel("Waste Level: ---%");
     private final JPanel north = new JPanel(new GridBagLayout()),
@@ -95,9 +97,19 @@ public class Dashboard extends JFrame implements ControlPanelView {
         gbc.gridy = 0;
         gbc.gridx = 1;
         gbc.weighty = 1.0;
+        // STYLE COMPONENTS
+        this.empty.setBackground(BG);
+        this.empty.setForeground(Color.white);
+        this.repair.setBackground(BG);
+        this.repair.setForeground(Color.white);
+        this.south.setBackground(BG);
+        this.north.setBackground(BG);
+        this.wasteLv.setForeground(Color.WHITE);
+        this.temp.setForeground(Color.WHITE);
+        // add chart
         this.south.add(this.chart.getPanel(), gbc);
+        // add in main panel
         content.add(this.north, BorderLayout.NORTH);
         content.add(this.south, BorderLayout.CENTER);
-        
     }
 }
