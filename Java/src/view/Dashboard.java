@@ -3,12 +3,13 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.HeadlessException;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,6 +22,8 @@ public class Dashboard extends JFrame implements ControlPanelView {
     private static final int WIDTH = 900,
             HEIGHT = 800,
             PADDING = 40;
+    private final ImageIcon bgN = new ImageIcon(getClass().getResource("/images/bgnorth.jpg")),
+            bgS = new ImageIcon(getClass().getResource("/images/bgsouth.jpg"));
     private final Color BG = new Color(32, 64, 96);
     private static final Font FONT = new Font("Arial", Font.BOLD, 20);
     private  static final String TITLE = "Smart Waste Disposal System";
@@ -29,10 +32,29 @@ public class Dashboard extends JFrame implements ControlPanelView {
     private MyChart chart = new MyChart(BG, new Font("Arial", Font.PLAIN, 12));
     private final JLabel temp = new JLabel("Temperature: ---°C"),
             wasteLv = new JLabel("Waste Level: ---%");
-    private final JPanel north = new JPanel(new GridBagLayout()),
-            south = new JPanel(new GridBagLayout());
+    private final JPanel north = new JPanel(new GridBagLayout()) {
+        private static final long serialVersionUID = 1L;
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (bgN != null) {
+                g.drawImage(bgN.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        }
+    },
+            south = new JPanel(new GridBagLayout())  {
+                private static final long serialVersionUID = 2L;
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    if (bgS != null) {
+                        g.drawImage(bgS.getImage(), 0, 0, getWidth(), getHeight(), this);
+                    }
+                    
+                }
+            };
 
-    public Dashboard(Runnable empty, Runnable repair) throws HeadlessException {
+    public Dashboard(Runnable empty, Runnable repair) {
         super(TITLE);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         initialize();
@@ -102,8 +124,10 @@ public class Dashboard extends JFrame implements ControlPanelView {
         this.empty.setForeground(Color.white);
         this.repair.setBackground(BG);
         this.repair.setForeground(Color.white);
-        this.south.setBackground(BG);
-        this.north.setBackground(BG);
+        if (this.bgN == null || bgS == null) {
+            this.north.setBackground(BG);
+            this.south.setBackground(BG);
+        }
         this.wasteLv.setForeground(Color.WHITE);
         this.temp.setForeground(Color.WHITE);
         // add chart
