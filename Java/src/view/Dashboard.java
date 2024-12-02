@@ -30,8 +30,9 @@ public class Dashboard extends JFrame implements ControlPanelView {
     private final JButton empty = new JButton("Empty"),
             repair = new JButton("Repair");
     private MyChart chart = new MyChart(BG, new Font("Arial", Font.PLAIN, 12));
-    private final JLabel temp = new JLabel("Temperature: ---°C"),
-            wasteLv = new JLabel("Waste Level: ---%");
+    private final JLabel temp = new JLabel("---°C"),
+            wasteLv = new JLabel("---%"),
+            alarm = new JLabel();
     private final JPanel north = new JPanel(new GridBagLayout()) {
         private static final long serialVersionUID = 1L;
         @Override
@@ -78,17 +79,34 @@ public class Dashboard extends JFrame implements ControlPanelView {
 
     @Override
     public void update(double level, double temp, boolean alarmOn) {
-        this.wasteLv.setText("Waste Level: " + level + "%");
-        this.temp.setText("Temperature: " + temp + "°C");
+        this.wasteLv.setText(level + "%");
+        this.temp.setText(temp + "°C");
         this.repair.setEnabled(alarmOn);
         // add data to the graphic
         this.chart.addData(level, temp, alarmOn);
+        // GRAPHIC DETAILS
+        if (level > 0.5) {
+            this.wasteLv.setForeground(Color.orange);
+            if (level > 0.75) {
+                this.wasteLv.setForeground(Color.red);
+            }
+        } else {
+            this.wasteLv.setForeground(Color.white);
+        }
+        this.chart.showAlarm(alarmOn);
+        this.temp.setForeground(alarmOn ? Color.red : Color.white);
+        this.alarm.setVisible(alarmOn);
         this.revalidate();
         this.repaint();
     }
 
     private void initialize() {
         var content = new JPanel(new BorderLayout());
+        JLabel wasteHeader = new JLabel("Waste Level: "),
+                tempHeader = new JLabel("Temperature: ");
+        JPanel wasteWrap = new JPanel(),
+                tempWrap = new JPanel();
+        this.alarm.setIcon(new ImageIcon(getClass().getResource("/images/overheat.png")));
         GridBagConstraints gbc = new GridBagConstraints();
         this.setSize(WIDTH, HEIGHT);
         this.setContentPane(content);
@@ -96,6 +114,14 @@ public class Dashboard extends JFrame implements ControlPanelView {
         this.repair.setFont(FONT);
         this.wasteLv.setFont(FONT);
         this.temp.setFont(FONT);
+        wasteHeader.setFont(FONT);
+        tempHeader.setFont(FONT);
+        this.alarm.setVisible(false);
+        // add label to respective wrappers
+        wasteWrap.add(wasteHeader);
+        wasteWrap.add(this.wasteLv);
+        tempWrap.add(tempHeader);
+        tempWrap.add(this.temp);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -110,15 +136,22 @@ public class Dashboard extends JFrame implements ControlPanelView {
         gbc.gridy = 0; // Prima riga
         gbc.insets = new Insets(0, PADDING, 0, PADDING);
         gbc.anchor = GridBagConstraints.WEST; // Centra nella cella
-        this.south.add(this.wasteLv, gbc);
+        this.south.add(wasteWrap, gbc);
         gbc.anchor = GridBagConstraints.NORTH;
         gbc.gridy = 1; // Seconda riga
-        this.south.add(this.temp, gbc);
+        this.south.add(tempWrap, gbc);
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.gridy = 0;
         gbc.gridx = 1;
-        gbc.weighty = 1.0;
+        gbc.weighty = 0.9;
+        // add chart
+        this.south.add(this.chart.getPanel(), gbc);
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.gridy = 1;
+        gbc.weighty = 0.1;
+        // add alarm label
+        this.south.add(this.alarm, gbc);
         // STYLE COMPONENTS
         this.empty.setBackground(BG);
         this.empty.setForeground(Color.white);
@@ -130,8 +163,10 @@ public class Dashboard extends JFrame implements ControlPanelView {
         }
         this.wasteLv.setForeground(Color.WHITE);
         this.temp.setForeground(Color.WHITE);
-        // add chart
-        this.south.add(this.chart.getPanel(), gbc);
+        wasteHeader.setForeground(Color.WHITE);
+        tempHeader.setForeground(Color.WHITE);
+        wasteWrap.setOpaque(false);
+        tempWrap.setOpaque(false);
         // add in main panel
         content.add(this.north, BorderLayout.NORTH);
         content.add(this.south, BorderLayout.CENTER);

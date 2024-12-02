@@ -39,7 +39,9 @@ public class MyChart {
         // add all to the panel
         this.pane = new ChartPanel(this.chart);
         // STYLE COMPONENTS
-        this.chart.setBackgroundPaint(BG);
+        //this.chart.setBackgroundPaint(BG);
+        this.pane.setOpaque(false);
+        this.chart.setBackgroundPaint(new Color(0, 0, 0, 0));
         this.chart.getPlot().setBackgroundPaint(Color.black);
         this.chart.getTitle().setPaint(Color.white);
         var plot = (XYPlot) chart.getPlot();
@@ -68,6 +70,10 @@ public class MyChart {
         double percTemp = ((temp - MIN_TEMP)/(MAX_TEMP - MIN_TEMP)) * TO_PERC;
         this.dataset.getSeries(1).add(elapsed, percTemp);
         this.dataset.getSeries(2).add(elapsed, alarmOn ? TO_PERC : 0);
+    }
+
+    public void showAlarm(boolean alarmOn) {
+        this.chart.getPlot().setBackgroundPaint(alarmOn ? Color.red : Color.black);
     }
 }
 
