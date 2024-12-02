@@ -93,7 +93,6 @@ public class Dashboard extends JFrame implements ControlPanelView {
         } else {
             this.wasteLv.setForeground(Color.white);
         }
-        this.chart.showAlarm(alarmOn);
         this.temp.setForeground(alarmOn ? Color.red : Color.white);
         this.alarm.setVisible(alarmOn);
         this.revalidate();

@@ -71,9 +71,5 @@ public class MyChart {
         this.dataset.getSeries(1).add(elapsed, percTemp);
         this.dataset.getSeries(2).add(elapsed, alarmOn ? TO_PERC : 0);
     }
-
-    public void showAlarm(boolean alarmOn) {
-        this.chart.getPlot().setBackgroundPaint(alarmOn ? Color.red : Color.black);
-    }
 }
 
