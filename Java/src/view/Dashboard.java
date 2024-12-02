@@ -9,6 +9,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,6 +24,7 @@ public class Dashboard extends JFrame implements ControlPanelView {
     private static final int WIDTH = 900,
             HEIGHT = 800,
             PADDING = 40;
+    private static final DecimalFormat FORMAT = new DecimalFormat("0.00");
     private final ImageIcon bgN = new ImageIcon(getClass().getResource("/images/bgnorth.jpg")),
             bgS = new ImageIcon(getClass().getResource("/images/bgsouth.jpg"));
     private final Color BG = new Color(32, 64, 96);
@@ -79,8 +82,8 @@ public class Dashboard extends JFrame implements ControlPanelView {
 
     @Override
     public void update(double level, double temp, boolean alarmOn) {
-        this.wasteLv.setText(level + "%");
-        this.temp.setText(temp + "°C");
+        this.wasteLv.setText(FORMAT.format(level * 100) + " %");
+        this.temp.setText(FORMAT.format(temp) + " °C");
         this.repair.setEnabled(alarmOn);
         // add data to the graphic
         this.chart.addData(level, temp, alarmOn);
