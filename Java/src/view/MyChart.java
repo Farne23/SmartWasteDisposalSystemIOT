@@ -12,6 +12,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 public class MyChart {
 
+    private static final int MAX_ITEM = 30;
     private static final long TIME = System.currentTimeMillis();
     private static final double MIN_TEMP = -30.0,
             MAX_TEMP = 70.0,
@@ -29,10 +30,17 @@ public class MyChart {
     }
 
     private void init() {
+        XYSeries wasteLvSeries = new XYSeries("Waste level"),
+                tempSeries = new XYSeries("Temperature"),
+                stateSeries = new XYSeries("State");
+        wasteLvSeries.setMaximumItemCount(MAX_ITEM);
+        tempSeries.setMaximumItemCount(MAX_ITEM);
+        stateSeries.setMaximumItemCount(MAX_ITEM);
+        
         // adding new series to the dataset
-        dataset.addSeries(new XYSeries("Waste level"));
-        dataset.addSeries(new XYSeries("Temperature"));
-        dataset.addSeries(new XYSeries("State"));
+        dataset.addSeries(wasteLvSeries);
+        dataset.addSeries(tempSeries);
+        dataset.addSeries(stateSeries);
         // giving a dataset to the chart
         this.chart = ChartFactory.createXYLineChart("System current state",
                 "Time (ms)", "Percentage %", this.dataset);

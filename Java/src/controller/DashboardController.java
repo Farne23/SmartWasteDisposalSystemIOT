@@ -54,7 +54,7 @@ public class DashboardController implements ControlPanelController {
 
     private final class UpdateAgent extends Thread {
 
-        private static final long DELAY = 3000;
+        private static final long DELAY = 100;
         // just for testing
         private static final Random rnd = new Random();
 
