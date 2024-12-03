@@ -13,7 +13,7 @@ void Dashboard::communicateStatus(double level, double temp, bool alarm)
 
 void Dashboard::readRequests()
 {    
-    if (service.isMsgAvailable())
+    /*if (service.isMsgAvailable())
     {
         Msg *req = service.receiveMsg();
         // String content = req->getContent();
@@ -21,6 +21,12 @@ void Dashboard::readRequests()
         this->repairPressed = req->getContent().equals("Temperature");
         // free memory
         delete req;
+    }*/
+    if (Serial.available()) {
+        char data = Serial.read();
+        this->emptyPressed = data == 'L';
+        this->repairPressed = data == 'T';
+        delete data;
     }
 }
 
