@@ -74,7 +74,7 @@ public class WasteDisposalImpl implements WasteDisposalModel {
              * the message format "L" sets
              * the waste level back to 0.
              */
-            this.channel.get().sendMsg("L");
+            this.channel.get().sendMsg("Level");
         }
     }
 
@@ -85,7 +85,7 @@ public class WasteDisposalImpl implements WasteDisposalModel {
              * the message format "A" ends the
              * alarm state.
              */
-            this.channel.get().sendMsg("T");
+            this.channel.get().sendMsg("Temeperature");
         }
     }
 }
