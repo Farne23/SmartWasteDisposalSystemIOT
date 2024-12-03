@@ -44,7 +44,6 @@ void setup() {
   scheduler.addTask(wasteDisposalTask);
   scheduler.addTask(sleepModeManagerTask);
   scheduler.addTask(guiUpdateTask);
-  //Serial.print("Welcome to SmartWasteDisposalSystem");
 }
 
 void loop() {

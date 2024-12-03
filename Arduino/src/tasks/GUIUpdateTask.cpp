@@ -26,10 +26,10 @@ void GUIUpdateTask ::tick()
             }
             break;
         case INPUT_WAITING:
+            this->container->getDashboardInputs();
             if (this->container->hasNormalBehaviour() && !this->container->isFull())
             {
                 this->status = MONITORING;
-                this->container->getDashboardInputs();
             }
             break;
 

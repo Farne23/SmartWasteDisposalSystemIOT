@@ -13,14 +13,15 @@ void Dashboard::communicateStatus(double level, double temp, bool alarm)
 
 void Dashboard::readRequests()
 {
+    Serial.println("aaa");
     if (service.isMsgAvailable())
     {
+        Serial.println("bbb");
         Msg *req = service.receiveMsg();
-        // String content = req->getContent();
-        this->emptyPressed = req->getContent() == "L";
-        this->repairPressed = req->getContent() == "T";
-        Serial.print(req->getContent());
-        // free memory
+        String content = req->getContent();
+        this->emptyPressed = content == "L";
+        this->repairPressed = content == "T";
+        Serial.print(content);
         delete req;
     }
 }
