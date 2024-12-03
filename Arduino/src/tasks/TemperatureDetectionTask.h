@@ -5,7 +5,7 @@
 #include "container/ContainerTempDetection.h"
 #include <Arduino.h>
 
-const unsigned int MAX_TEMP = 21;
+const unsigned int MAX_TEMP = 22;
 const unsigned long MAX_TEMP_EXCEEDING_TIME = 5000;
 
 enum TemperatureDetectionTaskStatus

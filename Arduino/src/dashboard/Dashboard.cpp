@@ -2,26 +2,30 @@
 
 Dashboard::Dashboard()
 {
-    this->service.init();
+    MsgService.init();
 }
 
 void Dashboard::communicateStatus(double level, double temp, bool alarm)
 {
-    this->service.sendMsg(String(level) + ";" + String(temp) +
-                          ";" + String(alarm));
+    MsgService.sendMsg(String(level) + ";" + String(temp) +
+                       ";" + String(alarm));
 }
 
 void Dashboard::readRequests()
-{    
-    if (service.isMsgAvailable())
+{
+    if (MsgService.isMsgAvailable())
     {
-        Msg *req = service.receiveMsg();
-        String content = req->getContent();
-        content.trim();
-        this->emptyPressed = content.equals("L");
-        this->repairPressed = content.equals("T");
-        // free memory
-        delete req;
+        Msg *msg = MsgService.receiveMsg();
+        String content = msg->getContent();
+        if (content == "L")
+        {
+            this->emptyPressed = true;
+        }
+        if (content == "T")
+        {
+            this->repairPressed = true;
+        }
+        delete msg;
     }
 }
 
