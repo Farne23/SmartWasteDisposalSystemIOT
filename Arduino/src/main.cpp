@@ -17,7 +17,7 @@ Scheduler scheduler;
 Container* container;
 
 void setup() {
-  Serial.begin(9600);
+  //Serial.begin(9600);
   //Container intitialization
   container = new Container();
   //Scheduler initialization
@@ -44,7 +44,6 @@ void setup() {
   scheduler.addTask(wasteDisposalTask);
   scheduler.addTask(sleepModeManagerTask);
   scheduler.addTask(guiUpdateTask);
-  //Serial.print("Welcome to SmartWasteDisposalSystem");
 }
 
 void loop() {

@@ -21,6 +21,7 @@ Container::Container(){
     this->fillLevel = 0;
     this->temperature = 0;
     this->sleeping = false;
+    this->emptyNeeded=false;
 }
 
 double Container::readTemperature(){
@@ -97,6 +98,7 @@ void Container::stopAccepting(){
     this->door->close();
     this->lightSignals->signalProblem();
     this->display->displayFull();
+    this->emptyNeeded = true;
 }
 
 void Container::receiveWaste(){
@@ -109,6 +111,7 @@ bool Container::emptyRequested(){
 }
 
 void Container::empty(){
+    this->emptyNeeded = false;
     this->door->empty();
 }
 
@@ -122,4 +125,8 @@ void Container::updateDashboard(){
 
 void Container :: getDashboardInputs(){
     this->dashboard->readRequests();
+}
+
+bool Container :: isEmptyNeeded(){
+    return emptyNeeded;
 }

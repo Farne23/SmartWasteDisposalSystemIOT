@@ -8,6 +8,7 @@ class ContainerGUIUpdate{
         virtual void getDashboardInputs() = 0;
         virtual bool hasNormalBehaviour() = 0;
         virtual bool isSleeping() = 0;
+        virtual bool isEmptyNeeded() = 0;
 };
 
 #endif

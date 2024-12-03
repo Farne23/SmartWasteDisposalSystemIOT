@@ -12,7 +12,7 @@ void Dashboard::communicateStatus(double level, double temp, bool alarm)
 }
 
 void Dashboard::readRequests()
-{
+{    
     if (service.isMsgAvailable())
     {
         Msg *req = service.receiveMsg();
