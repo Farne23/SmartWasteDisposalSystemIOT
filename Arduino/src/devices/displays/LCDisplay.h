@@ -13,7 +13,7 @@ class LCDisplay {
         void printMsg(string msgName);
         bool addMsg(string name, string line1, string line2);
     private:
-        std::map<string, pair<string, string>> msgs; // should be initialized empty alrerady
+        std::map<string, pair<string, string>> msgs;
         LiquidCrystal_I2C lcd;
 };
 
