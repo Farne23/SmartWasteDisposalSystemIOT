@@ -39,7 +39,7 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 	public void sendMsg(String msg) {
 		char[] array = (msg+"\n").toCharArray();
 		byte[] bytes = new byte[array.length];
-		System.out.println("Sending [");
+		System.out.println("Sending " + array.length + " bytes [");
 		for (int i = 0; i < array.length; i++){
 		    System.out.println(array[i]);
 			bytes[i] = (byte) array[i];

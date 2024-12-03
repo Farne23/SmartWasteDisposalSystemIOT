@@ -16,8 +16,8 @@ void Dashboard::readRequests()
     {
         Msg *req = service.receiveMsg();
         // String content = req->getContent();
-        this->emptyPressed = req->getContent() == "L";
-        this->repairPressed = req->getContent() == "T";
+        this->emptyPressed = *req->getContent().begin() == 'L';
+        this->repairPressed = *req->getContent().begin() == 'T';
         Serial.print(req->getContent());
         // free memory
         delete req;
