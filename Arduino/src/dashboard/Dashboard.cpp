@@ -2,6 +2,7 @@
 
 Dashboard::Dashboard()
 {
+    this->service.init();
 }
 
 void Dashboard::communicateStatus(double level, double temp, bool alarm)
@@ -16,8 +17,8 @@ void Dashboard::readRequests()
     {
         Msg *req = service.receiveMsg();
         // String content = req->getContent();
-        this->emptyPressed = *req->getContent().begin() == 'L';
-        this->repairPressed = *req->getContent().begin() == 'T';
+        this->emptyPressed = req->getContent() == "L";
+        this->repairPressed = req->getContent() == "T";
         Serial.print(req->getContent());
         // free memory
         delete req;
