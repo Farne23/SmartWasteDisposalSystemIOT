@@ -11,5 +11,6 @@
     "C:/msys64/ucrt64/include/c++/13.2.0/",
     "C:/msys64/ucrt64/include"
   ],
-  "C_Cpp.default.intelliSenseMode": "gcc-x64"  // Imposta il modo di IntelliSense per gcc
+  "C_Cpp.default.intelliSenseMode": "gcc-x64",
+  "C_Cpp.errorSquiggles": "disabled" // Imposta il modo di IntelliSense per gcc
 }
