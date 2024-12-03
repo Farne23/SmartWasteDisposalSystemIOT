@@ -130,3 +130,11 @@ void Container :: getDashboardInputs(){
 bool Container :: isEmptyNeeded(){
     return emptyNeeded;
 }
+
+void Container:: resetLights(){
+    if(this->emptyNeeded){
+        lightSignals->signalProblem();
+    }else{
+        lightSignals->signalAvailability();
+    }
+}
