@@ -1,8 +1,10 @@
 #include "Container.h"
 #include "settings/HwInterfaces.h"
 
-#define CONTAINER_FULL_DISTANCE 0.01 //threshold rappresenting the distance  the sonar has to sense in order to consider the container full
-#define CONTAINER_EMPTY_DISTANCE 0.06
+#define CONTAINER_FULL_DISTANCE 0.02 //threshold rappresenting the distance  the sonar has to sense in order to consider the container full
+#define CONTAINER_EMPTY_DISTANCE 0.05
+
+double sonarDistance;
 
 Container::Container(){
     this->tempSensor = new TempSensor(TEMP_SENSOR_PIN);
@@ -14,6 +16,10 @@ Container::Container(){
     this->door = new Door(new ServoMotorImpl(SERVO_MOTOR_PIN));
     this->dashboard = new Dashboard();
     this->status=NORMAL;
+    this->fillPercentage = 0;
+    this->fillLevel = 0;
+    this->temperature = 0;
+    this->sleeping = false;
 }
 
 double Container::readTemperature(){
@@ -75,7 +81,14 @@ bool Container::isFull(){
 }
 
 double Container::getFillPercentage(){
-    this->fillPercentage = ((this->sonar->sense()-CONTAINER_EMPTY_DISTANCE)/(CONTAINER_FULL_DISTANCE-CONTAINER_EMPTY_DISTANCE))*100;
+    sonarDistance = this->sonar->sense();
+    if(sonarDistance > CONTAINER_EMPTY_DISTANCE){
+        this->fillPercentage = 0;
+    }else if(sonarDistance < CONTAINER_FULL_DISTANCE){
+        this->fillPercentage = 100;
+    }else{
+        this->fillPercentage = ((sonarDistance-CONTAINER_EMPTY_DISTANCE)/(CONTAINER_FULL_DISTANCE-CONTAINER_EMPTY_DISTANCE))*100;
+    }
     return this->fillPercentage ;
 }
 
