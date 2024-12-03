@@ -13,6 +13,8 @@ public class WasteDisposalImpl implements WasteDisposalModel {
             NVALUES = 3;
     private Optional<Pair<Double, Pair<Double, Boolean>>> lastValue;
     private Optional<CommChannel> channel;
+    private boolean sendOn = false;
+    private final SendAgent agent = new SendAgent();
 
     public WasteDisposalImpl(String port) {
         try {
@@ -38,6 +40,9 @@ public class WasteDisposalImpl implements WasteDisposalModel {
                 // potrebbe tirare eccezione, si suppone che se 
                 // la stringa non continene ";" non divide e basta
                 String[] values = msg.split(";");
+                if (msg.equals("OK")) {
+                    this.sendOn = false;
+                }
                 try {
                     if (values.length == NVALUES) {
                         double level = Double.parseDouble(values[0]),
@@ -74,7 +79,8 @@ public class WasteDisposalImpl implements WasteDisposalModel {
              * the message format "L" sets
              * the waste level back to 0.
              */
-            this.channel.get().sendMsg("L");
+            this.agent.setMsg("L");
+            this.agent.start();
         }
     }
 
@@ -85,7 +91,24 @@ public class WasteDisposalImpl implements WasteDisposalModel {
              * the message format "A" ends the
              * alarm state.
              */
-            this.channel.get().sendMsg("T");
+            this.agent.setMsg("T");
+            this.agent.start();
+        }
+    }
+
+    private final class SendAgent extends Thread {
+        private String msg;
+
+        public void setMsg(String newMsg) {
+            this.msg = newMsg;
+        }
+
+        @Override
+        public void run() {
+            sendOn = true;
+            while (sendOn) {
+                channel.get().sendMsg(this.msg);
+            }
         }
     }
 }

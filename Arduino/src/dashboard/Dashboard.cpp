@@ -26,6 +26,9 @@ void Dashboard::readRequests()
         char data = Serial.read();
         this->emptyPressed = data == 'L';
         this->repairPressed = data == 'T';
+        if (this->emptyPressed || this->repairPressed) {
+            this->service.sendMsg("OK");
+        }
         delete data;
     }
 }
