@@ -34,6 +34,7 @@ public class DashboardController implements ControlPanelController {
     public void refresh() {
         var data = this.model.getStatus();
         if (data.isPresent()) {
+            System.out.println("Controller alarm: " + data.get().getY().getY());
             this.view.update(data.get().getX(),
                     data.get().getY().getX(),
                     data.get().getY().getY());
@@ -53,20 +54,16 @@ public class DashboardController implements ControlPanelController {
     private final class UpdateAgent extends Thread {
 
         private static final long DELAY = 150;
-        // just for testing
-        // private static final Random rnd = new Random();
 
         public UpdateAgent() {}
 
         public void run() {
             while(true) {
                 refresh();
-                // just for testing
-                // view.update(rnd.nextDouble(1.0), rnd.nextDouble(), rnd.nextInt() % 2 == 0);
                 try {
                     Thread.sleep(DELAY);
                 } catch (InterruptedException e) {}
             }
-        }   
+        }
     }
 }

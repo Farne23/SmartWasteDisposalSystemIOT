@@ -6,6 +6,7 @@ import java.awt.Font;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -51,8 +52,10 @@ public class MyChart {
         this.pane.setOpaque(false);
         this.chart.setBackgroundPaint(new Color(0, 0, 0, 0));
         this.chart.getPlot().setBackgroundPaint(Color.black);
-        this.chart.getTitle().setPaint(Color.white);
         var plot = (XYPlot) chart.getPlot();
+        NumberAxis rangeAxis = (NumberAxis)plot.getRangeAxis();
+        rangeAxis.setRangeWithMargins(0.0, 100.0);
+        this.chart.getTitle().setPaint(Color.white);
         plot.getDomainAxis().setLabelPaint(Color.white);
         plot.getDomainAxis().setLabelFont(this.font);
         plot.getRangeAxis().setLabelPaint(Color.white);
@@ -73,11 +76,11 @@ public class MyChart {
     public void addData(double level, double temp, boolean alarmOn) {
         // compute elapsed time
         long elapsed = System.currentTimeMillis() - TIME;
-        this.dataset.getSeries(0).add(elapsed, level / TO_PERC);
+        this.dataset.getSeries(0).add(elapsed, level);
         // compute percentage temp
-        double percTemp = ((temp - MIN_TEMP)/(MAX_TEMP - MIN_TEMP));
+        double percTemp = ((temp - MIN_TEMP)/(MAX_TEMP - MIN_TEMP) * TO_PERC);
         this.dataset.getSeries(1).add(elapsed, percTemp);
-        this.dataset.getSeries(2).add(elapsed, alarmOn ? 1 : 0);
+        this.dataset.getSeries(2).add(elapsed, alarmOn ? TO_PERC : 0);
     }
 }
 
