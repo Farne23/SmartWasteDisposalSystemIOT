@@ -35,6 +35,7 @@ public class WasteDisposalImpl implements WasteDisposalModel {
              */
             try {
                 String msg = this.channel.get().receiveMsg();
+                System.out.println("Msg: " + msg);
                 // potrebbe tirare eccezione, si suppone che se 
                 // la stringa non continene ";" non divide e basta
                 String[] values = msg.split(";");
