@@ -84,7 +84,6 @@ public class Dashboard extends JFrame implements ControlPanelView {
     public void update(double level, double temp, boolean alarmOn) {
         this.wasteLv.setText(FORMAT.format(level) + " %");
         this.temp.setText(FORMAT.format(temp) + " °C");
-        System.out.println("View alarm: "+ alarmOn);
         this.repair.setEnabled(alarmOn);
         // add data to the graphic
         this.chart.addData(level, temp, alarmOn);

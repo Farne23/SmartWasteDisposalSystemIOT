@@ -34,7 +34,6 @@ public class DashboardController implements ControlPanelController {
     public void refresh() {
         var data = this.model.getStatus();
         if (data.isPresent()) {
-            System.out.println("Controller alarm: " + data.get().getY().getY());
             this.view.update(data.get().getX(),
                     data.get().getY().getX(),
                     data.get().getY().getY());

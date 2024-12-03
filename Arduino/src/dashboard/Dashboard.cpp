@@ -17,6 +17,7 @@ void Dashboard::readRequests() {
         content.trim();
         this->emptyPressed = content == "L";
         this->repairPressed = content == "T";
+        Serial.print(req->getContent());
         // free memory
         delete req;
     }
