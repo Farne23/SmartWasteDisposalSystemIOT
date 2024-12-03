@@ -13,8 +13,8 @@ void Dashboard::readRequests() {
         Msg * req = service.receiveMsg();
         // BISOGNA CAPIRE SE GETCONTENT() TORNA UNA STRINGA
         // O ALTRO.
-        this->emptyPressed = req->getContent() == "L";
-        this->repairPressed = req->getContent() == "T";
+        this->emptyPressed = req->getContent() == String("L");
+        this->repairPressed = req->getContent() == String("T");
         // free memory
         delete req;
     }
