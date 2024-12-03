@@ -41,13 +41,6 @@ void MsgServiceClass::sendMsg(const String &msg)
   Serial.println(msg);
 }
 
-/* versione in cui sono io a creare il messaggio
-PER ORA NON LA USIAMO
-void MsgServiceClass::sendMsg(const Msg& msg){
-  Serial.println(msg.getContent());
-}
-*/
-
 void serialEvent()
 {
   while (Serial.available())

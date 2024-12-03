@@ -6,7 +6,7 @@
 
 const float temp = 20,
 t_factor = 0.62;
-/* velocità del suono supponendo una temperatura di 20°C */
+/* sound speed in 20 °C temperature environment */
 const float vs = 331.45 + temp * t_factor; 
 
 Sonar::Sonar(int trig, int echo) {
