@@ -44,10 +44,12 @@ public class WasteDisposalImpl implements WasteDisposalModel {
                                 temp = Double.parseDouble(values[1]);
                         boolean alarm = Integer.parseInt(values[2]) == 1;
                         if (level <= 100 && level >= 0) {
+                            /*
                             System.out.println("{\nLevel: " + level + "  (sent : " + values[0] + ")\n"
                                     + "Temp: " + temp + "  (sent : " + values[1] + ")\n"
                                     + "Alarm: " + alarm + "  (sent : " + values[2] + ")\n"
                                     + "}");
+                            */
                             // /100 beacuse level is showed as a percentage from 0.0 to 1.0
                             this.lastValue = Optional.of(new Pair<>(level, new Pair<>(temp, alarm)));
                             return this.lastValue;
