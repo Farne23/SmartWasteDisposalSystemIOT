@@ -14,6 +14,7 @@ public class App {
      */
     public static void main(String args[]) {
         //@SuppressWarnings("unused")
-        ControlPanelController controller = new DashboardController();
+        String port = "";
+        ControlPanelController controller = new DashboardController(port);
     }
 }
