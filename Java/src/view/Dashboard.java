@@ -89,9 +89,9 @@ public class Dashboard extends JFrame implements ControlPanelView {
         // add data to the graphic
         this.chart.addData(level, temp, alarmOn);
         // GRAPHIC DETAILS
-        if (level > 0.5) {
+        if (level > 50.0) {
             this.wasteLv.setForeground(Color.orange);
-            if (level > 0.75) {
+            if (level > 75.0) {
                 this.wasteLv.setForeground(Color.red);
             }
         } else {
