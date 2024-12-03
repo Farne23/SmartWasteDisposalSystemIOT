@@ -42,7 +42,12 @@ void MsgServiceClass::sendMsg(const Msg& msg){
 */
 
 void serialEvent() {
-  /* reading the content */
+  if (Serial.available()) {
+    String msg = Serial.readStringUntil('/n');
+    MsgService.currentMsg = new Msg(msg);
+    MsgService.msgAvailable = true;
+  }
+  /* reading the content 
   while (Serial.available()) {
     char ch = (char) Serial.read();
     if (ch == '\n'){
@@ -52,6 +57,7 @@ void serialEvent() {
       content += ch;      
     }
   }
+  */
 }
 
 /* controlla e c'è un messaggio sulla linea seriale */

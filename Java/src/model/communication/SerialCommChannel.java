@@ -37,25 +37,14 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 
 	@Override
 	public void sendMsg(String msg) {
-	    msg = msg + "\n";
-	    try {
-            byte[] bytes = msg.getBytes("US-ASCII");
-            try {
-                synchronized (serialPort) {
-                    serialPort.writeBytes(bytes);
-                }
-            } catch(Exception ex){
-                ex.printStackTrace();
-            }
-        } catch (UnsupportedEncodingException e) {
-            System.out.println("Unsupported US-ASCII");
-        }
-		/*
 		char[] array = (msg+"\n").toCharArray();
 		byte[] bytes = new byte[array.length];
+		System.out.println("Sending [");
 		for (int i = 0; i < array.length; i++){
+		    System.out.println(array[i]);
 			bytes[i] = (byte) array[i];
 		}
+		System.out.println("]");
 		try {
 			synchronized (serialPort) {
 				serialPort.writeBytes(bytes);
@@ -63,7 +52,6 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 		} catch(Exception ex){
 			ex.printStackTrace();
 		}
-		*/
 	}
 
 	@Override
