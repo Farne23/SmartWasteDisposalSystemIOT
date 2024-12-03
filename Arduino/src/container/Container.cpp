@@ -2,7 +2,8 @@
 #include "settings/HwInterfaces.h"
 
 #define CONTAINER_FULL_DISTANCE 0.02 //threshold rappresenting the distance  the sonar has to sense in order to consider the container full
-#define CONTAINER_EMPTY_DISTANCE 0.05
+#define CONTAINER_EMPTY_DISTANCE 0.06
+#define TO_BE_EMPTIED_THRESHOLD 90
 
 double sonarDistance;
 
@@ -77,7 +78,7 @@ void Container::spill(){
 }
 
 bool Container::isFull(){
-    return (this->getFillPercentage())>=100;
+    return (this->getFillPercentage())>=TO_BE_EMPTIED_THRESHOLD;
 }
 
 double Container::getFillPercentage(){

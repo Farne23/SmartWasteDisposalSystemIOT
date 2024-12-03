@@ -29,8 +29,8 @@ void GUIUpdateTask ::tick()
             if (this->container->hasNormalBehaviour() && !this->container->isFull())
             {
                 this->status = MONITORING;
+                this->container->getDashboardInputs();
             }
-            this->container->getDashboardInputs();
             break;
 
         default:
