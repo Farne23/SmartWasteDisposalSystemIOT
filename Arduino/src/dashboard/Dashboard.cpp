@@ -17,8 +17,8 @@ void Dashboard::readRequests()
     {
         Msg *req = service.receiveMsg();
         // String content = req->getContent();
-        this->emptyPressed = req->getContent() == "L";
-        this->repairPressed = req->getContent() == "T";
+        this->emptyPressed = req->getContent().equals("Level");
+        this->repairPressed = req->getContent().equals("Temperature");
         // free memory
         delete req;
     }

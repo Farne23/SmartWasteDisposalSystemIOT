@@ -49,7 +49,7 @@ void serialEvent() {
       MsgService.currentMsg = new Msg(content);
       MsgService.msgAvailable = true;      
     } else {
-      content += ch;      
+      content += ch; 
     }
   }
 }
