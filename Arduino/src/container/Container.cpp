@@ -51,7 +51,7 @@ bool Container::isSleeping(){
 
 
 void Container::signalAvailability(){
-    //this->door->close();
+    this->door->close();
     this->lightSignals->signalAvailability();
     this->display->displayReadyToOpen();
 }

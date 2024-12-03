@@ -11,7 +11,6 @@ class Dashboard{
         bool getEmpty();
         bool getRepair();
     private:
-        MsgServiceClass service;
         bool emptyPressed;
         bool repairPressed;
 };
