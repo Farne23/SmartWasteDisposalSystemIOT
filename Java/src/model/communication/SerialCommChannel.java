@@ -1,6 +1,5 @@
 package model.communication;
 
-import java.io.UnsupportedEncodingException;
 import java.util.concurrent.*;
 import jssc.*;
 import model.communication.api.CommChannel;
