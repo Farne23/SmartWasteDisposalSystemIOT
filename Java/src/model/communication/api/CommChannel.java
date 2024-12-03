@@ -30,4 +30,9 @@ public interface CommChannel {
 	 */
 	boolean isMsgAvailable();
 
+	/**
+	 * To close the connection
+	 */
+	void close();
+
 }

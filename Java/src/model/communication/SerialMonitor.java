@@ -2,6 +2,7 @@ package model.communication;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+
 import jssc.*;
 
 public class SerialMonitor implements SerialPortEventListener {
@@ -80,6 +81,4 @@ public class SerialMonitor implements SerialPortEventListener {
 			}
 		}
 	}
-
-
 }

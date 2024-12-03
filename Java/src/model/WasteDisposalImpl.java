@@ -18,7 +18,7 @@ public class WasteDisposalImpl implements WasteDisposalModel {
         try {
             this.channel = Optional.of(new SerialCommChannel(port, BAUDRATE));
         } catch (Exception e) {
-            System.out.println("Invalid port");
+            e.printStackTrace();
             this.channel = Optional.empty();
         }
         this.lastValue = Optional.empty();
@@ -82,5 +82,4 @@ public class WasteDisposalImpl implements WasteDisposalModel {
             this.channel.get().sendMsg("T");
         }
     }
-
 }

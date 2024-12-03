@@ -2,7 +2,6 @@ package controller;
 
 
 import controller.api.ControlPanelController;
-import view.Dashboard;
 
 /**
  * Entry point class
@@ -14,6 +13,6 @@ public class App {
      */
     public static void main(String args[]) {
         //@SuppressWarnings("unused")
-        ControlPanelController controller = new DashboardController();
+        ControlPanelController controller = new DashboardController("COM3");
     }
 }

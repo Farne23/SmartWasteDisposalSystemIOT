@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.Random;
-
 import controller.api.ControlPanelController;
 import model.WasteDisposalImpl;
 import model.api.WasteDisposalModel;
@@ -24,13 +22,13 @@ public class DashboardController implements ControlPanelController {
 
     /**
      * EXCLUSIVELY FOR TESTING!!!
-     */
     public DashboardController() {
         this.model = null;
         this.view = new Dashboard(() -> {}, () -> {});
         this.agent = new UpdateAgent();
         this.agent.start();
     }
+    */
 
     @Override
     public void refresh() {
@@ -54,20 +52,17 @@ public class DashboardController implements ControlPanelController {
 
     private final class UpdateAgent extends Thread {
 
-        private static final long DELAY = 100;
+        private static final long DELAY = 150;
         // just for testing
-        private static final Random rnd = new Random();
+        // private static final Random rnd = new Random();
 
         public UpdateAgent() {}
 
         public void run() {
             while(true) {
-                /*
                 refresh();
-                */
                 // just for testing
-                view.update(rnd.nextDouble(1.0), rnd.nextDouble(), rnd.nextInt() % 2 == 0);
-                //
+                // view.update(rnd.nextDouble(1.0), rnd.nextDouble(), rnd.nextInt() % 2 == 0);
                 try {
                     Thread.sleep(DELAY);
                 } catch (InterruptedException e) {}
