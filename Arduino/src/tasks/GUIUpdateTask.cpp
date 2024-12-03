@@ -1,4 +1,5 @@
 #include "GUIUpdateTask.h"
+#include "Arduino.h"
 
 GUIUpdateTask ::GUIUpdateTask(ContainerGUIUpdate *container)
 {

@@ -4,7 +4,7 @@
 #include "Task.h"
 #include "container/ContainerSleepModeManager.h"
 
-const unsigned long SLEEP_TIME = 8000;
+const unsigned long SLEEP_TIME = 14000;
 
 enum SleepModeStatus
 {
