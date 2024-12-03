@@ -73,11 +73,11 @@ public class MyChart {
     public void addData(double level, double temp, boolean alarmOn) {
         // compute elapsed time
         long elapsed = System.currentTimeMillis() - TIME;
-        this.dataset.getSeries(0).add(elapsed, level * TO_PERC);
+        this.dataset.getSeries(0).add(elapsed, level / TO_PERC);
         // compute percentage temp
-        double percTemp = ((temp - MIN_TEMP)/(MAX_TEMP - MIN_TEMP)) * TO_PERC;
+        double percTemp = ((temp - MIN_TEMP)/(MAX_TEMP - MIN_TEMP));
         this.dataset.getSeries(1).add(elapsed, percTemp);
-        this.dataset.getSeries(2).add(elapsed, alarmOn ? TO_PERC : 0);
+        this.dataset.getSeries(2).add(elapsed, alarmOn ? 1 : 0);
     }
 }
 
