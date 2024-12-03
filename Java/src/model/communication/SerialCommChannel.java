@@ -1,5 +1,6 @@
 package model.communication;
 
+import java.io.UnsupportedEncodingException;
 import java.util.concurrent.*;
 import jssc.*;
 import model.communication.api.CommChannel;
@@ -36,6 +37,20 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 
 	@Override
 	public void sendMsg(String msg) {
+	    msg = msg + "\n";
+	    try {
+            byte[] bytes = msg.getBytes("US-ASCII");
+            try {
+                synchronized (serialPort) {
+                    serialPort.writeBytes(bytes);
+                }
+            } catch(Exception ex){
+                ex.printStackTrace();
+            }
+        } catch (UnsupportedEncodingException e) {
+            System.out.println("Unsupported US-ASCII");
+        }
+		/*
 		char[] array = (msg+"\n").toCharArray();
 		byte[] bytes = new byte[array.length];
 		for (int i = 0; i < array.length; i++){
@@ -48,6 +63,7 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 		} catch(Exception ex){
 			ex.printStackTrace();
 		}
+		*/
 	}
 
 	@Override
