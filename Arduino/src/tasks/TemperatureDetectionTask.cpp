@@ -42,6 +42,7 @@ void TemperatureDetectionTask ::tick()
             if (this->container->isFixed())
             {
                 this->status = TEMPERATURE_DETECTION;
+                this->container->resetLights();
             }
             break;
         default:

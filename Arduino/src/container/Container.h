@@ -47,6 +47,7 @@ class Container : public ContainerTempDetection, public ContainerWasteDisposal, 
         void signalProblem();
         bool isFixed();
         double readTemperature();
+        void resetLights();
 
         void spill();
         void signalAvailability();
